@@ -1,0 +1,20 @@
+[package]
+name = "rosetta-cli"
+version.workspace = true
+edition.workspace = true
+description = "Command-line interface for Rosetta transpiler"
+
+[[bin]]
+name = "rosetta"
+path = "src/main.rs"
+
+[dependencies]
+rosetta-core = { workspace = true }
+rosetta-ir = { workspace = true }
+rosetta-codegen = { workspace = true }
+rosetta-fortran = { workspace = true }
+clap = { workspace = true }
+colored = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }
+tracing-subscriber = { workspace = true }

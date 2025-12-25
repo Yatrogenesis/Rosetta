@@ -1,0 +1,79 @@
+[workspace]
+resolver = "2"
+members = [
+    # Core transpiler infrastructure
+    "crates/rosetta-core",       # Common types, IR, traits
+    "crates/rosetta-ir",         # Intermediate Representation
+    "crates/rosetta-codegen",    # Rust code generation
+
+    # Frontend parsers (legacy languages)
+    "crates/rosetta-fortran",    # FORTRAN 77/90/95/2003/2008
+    "crates/rosetta-cobol",      # COBOL
+    "crates/rosetta-lisp",       # Common Lisp / Scheme
+    "crates/rosetta-quickbasic", # QuickBASIC / QBASIC
+    "crates/rosetta-ml",         # Standard ML / OCaml
+
+    # Additional tools
+    "crates/rosetta-cli",        # Command-line interface
+    "crates/rosetta-validator",  # Numerical equivalence testing
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+authors = ["Francisco Molina <pako.molina@gmail.com>"]
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/Yatrogenesis/Rosetta"
+keywords = ["transpiler", "fortran", "cobol", "lisp", "rust"]
+categories = ["development-tools", "parsing", "compilers"]
+
+[workspace.dependencies]
+# Core dependencies
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Parsing
+logos = "0.14"           # Lexer generator
+pest = "2.7"             # PEG parser
+pest_derive = "2.7"
+nom = "7.1"              # Parser combinators
+tree-sitter = "0.24"     # Incremental parsing
+
+# Code generation
+proc-macro2 = "1.0"
+quote = "1.0"
+syn = { version = "2.0", features = ["full", "parsing"] }
+prettyplease = "0.2"     # Rust code formatting
+
+# CLI
+clap = { version = "4.5", features = ["derive"] }
+colored = "2.1"
+
+# Testing
+approx = "0.5"
+proptest = "1.5"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = "0.3"
+
+# Async (for web service)
+tokio = { version = "1.41", features = ["full"] }
+
+# Internal
+rosetta-core = { path = "crates/rosetta-core" }
+rosetta-ir = { path = "crates/rosetta-ir" }
+rosetta-codegen = { path = "crates/rosetta-codegen" }
+rosetta-fortran = { path = "crates/rosetta-fortran" }
+rosetta-cobol = { path = "crates/rosetta-cobol" }
+rosetta-lisp = { path = "crates/rosetta-lisp" }
+rosetta-quickbasic = { path = "crates/rosetta-quickbasic" }
+rosetta-ml = { path = "crates/rosetta-ml" }
+rosetta-validator = { path = "crates/rosetta-validator" }
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+codegen-units = 1

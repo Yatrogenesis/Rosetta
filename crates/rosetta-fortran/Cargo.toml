@@ -1,0 +1,14 @@
+[package]
+name = "rosetta-fortran"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "FORTRAN frontend for Rosetta transpiler (F77/F90/F95/F2003/F2008)"
+
+[dependencies]
+rosetta-core = { workspace = true }
+rosetta-ir = { workspace = true }
+logos = { workspace = true }
+thiserror = { workspace = true }
+serde = { workspace = true }

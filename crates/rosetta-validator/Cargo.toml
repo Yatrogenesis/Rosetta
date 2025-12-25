@@ -1,0 +1,10 @@
+[package]
+name = "rosetta-validator"
+version.workspace = true
+edition.workspace = true
+description = "Numerical equivalence validation for Rosetta transpiler"
+
+[dependencies]
+rosetta-core = { workspace = true }
+thiserror = { workspace = true }
+approx = { workspace = true }

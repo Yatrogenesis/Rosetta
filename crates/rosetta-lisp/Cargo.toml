@@ -1,0 +1,10 @@
+[package]
+name = "rosetta-lisp"
+version.workspace = true
+edition.workspace = true
+description = "Common Lisp / Scheme frontend for Rosetta transpiler"
+
+[dependencies]
+rosetta-core = { workspace = true }
+rosetta-ir = { workspace = true }
+thiserror = { workspace = true }
