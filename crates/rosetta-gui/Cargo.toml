@@ -1,0 +1,32 @@
+[package]
+name = "rosetta-gui"
+version.workspace = true
+edition.workspace = true
+description = "GUI for Rosetta legacy language transpiler"
+keywords = ["gui", "transpiler", "egui"]
+
+[[bin]]
+name = "rosetta-gui"
+path = "src/main.rs"
+
+[dependencies]
+rosetta-core = { workspace = true }
+rosetta-ir = { workspace = true }
+rosetta-codegen = { workspace = true }
+rosetta-fortran = { workspace = true }
+rosetta-cobol = { workspace = true }
+rosetta-lisp = { workspace = true }
+rosetta-quickbasic = { workspace = true }
+rosetta-ml = { workspace = true }
+rosetta-planner = { path = "../rosetta-planner" }
+rosetta-ops5 = { path = "../rosetta-ops5" }
+rosetta-krl = { path = "../rosetta-krl" }
+rosetta-prolog = { path = "../rosetta-prolog" }
+eframe = { workspace = true }
+egui = { workspace = true }
+syntect = { workspace = true }
+rfd = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+anyhow = { workspace = true }
+tracing = { workspace = true }

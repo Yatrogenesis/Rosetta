@@ -1,21 +1,21 @@
 //! # Rosetta ML Frontend
 //!
 //! Parses Standard ML and OCaml into Rosetta IR.
-//! Functional programming paradigm support.
 
-use rosetta_core::{Frontend, SourceLanguage, Result};
+use rosetta_core::{Frontend, SourceFile, RosettaIr, ParseError};
 
 pub struct MLParser {
     dialect: MLDialect,
 }
 
+#[derive(Clone, Copy)]
 pub enum MLDialect {
     StandardML,
     OCaml,
 }
 
 impl MLParser {
-    pub fn sml() -> Self {
+    pub fn standard_ml() -> Self {
         Self { dialect: MLDialect::StandardML }
     }
 
@@ -25,16 +25,22 @@ impl MLParser {
 }
 
 impl Frontend for MLParser {
-    type Ast = ();
-
-    fn parse(&self, _source: &str) -> Result<Self::Ast> {
-        todo!("ML parser not yet implemented")
+    fn name(&self) -> &'static str {
+        match self.dialect {
+            MLDialect::StandardML => "Standard ML",
+            MLDialect::OCaml => "OCaml",
+        }
     }
 
-    fn language(&self) -> SourceLanguage {
+    fn file_extensions(&self) -> &[&'static str] {
         match self.dialect {
-            MLDialect::StandardML => SourceLanguage::StandardML,
-            MLDialect::OCaml => SourceLanguage::OCaml,
+            MLDialect::StandardML => &["sml", "sig"],
+            MLDialect::OCaml => &["ml", "mli"],
         }
+    }
+
+    fn parse(&self, _source: &SourceFile) -> std::result::Result<RosettaIr, ParseError> {
+        // TODO: Implement ML parser
+        Ok(RosettaIr::default())
     }
 }

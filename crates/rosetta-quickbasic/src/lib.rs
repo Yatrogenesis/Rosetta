@@ -1,20 +1,22 @@
 //! # Rosetta QuickBASIC Frontend
 //!
 //! Parses QuickBASIC/QBASIC into Rosetta IR.
-//! Educational accessibility for scientists.
 
-use rosetta_core::{Frontend, SourceLanguage, Result};
+use rosetta_core::{Frontend, SourceFile, RosettaIr, ParseError};
 
 pub struct QuickBasicParser;
 
 impl Frontend for QuickBasicParser {
-    type Ast = ();
-
-    fn parse(&self, _source: &str) -> Result<Self::Ast> {
-        todo!("QuickBASIC parser not yet implemented")
+    fn name(&self) -> &'static str {
+        "QuickBASIC"
     }
 
-    fn language(&self) -> SourceLanguage {
-        SourceLanguage::QuickBasic
+    fn file_extensions(&self) -> &[&'static str] {
+        &["bas", "bi"]
+    }
+
+    fn parse(&self, _source: &SourceFile) -> std::result::Result<RosettaIr, ParseError> {
+        // TODO: Implement QuickBASIC parser
+        Ok(RosettaIr::default())
     }
 }

@@ -35,7 +35,7 @@
 //! | FUNCTION | fn(...) -> T |
 
 use logos::Logos;
-use rosetta_core::{Frontend, SourceLanguage, TranspileError, Result, SourceLocation};
+use rosetta_core::{Frontend, SourceLanguage, Result, SourceFile, ParseError, RosettaIr};
 use rosetta_ir::IrModule;
 use serde::{Deserialize, Serialize};
 
@@ -180,7 +180,7 @@ pub enum FortranToken {
     Plus,
     #[token("-")]
     Minus,
-    #[token("*")]
+    #[token("*", priority = 3)]
     Star,
     #[token("/")]
     Slash,
@@ -203,8 +203,8 @@ pub enum FortranToken {
     #[regex(r"\n")]
     Newline,
 
-    // Comment
-    #[regex(r"[!cC\*].*")]
+    // Comment (! style only for free-form, C/c/* are handled by preprocessor for fixed-form)
+    #[regex(r"!.*", priority = 1)]
     Comment,
 }
 
@@ -437,13 +437,33 @@ impl FortranParser {
 }
 
 impl Frontend for FortranParser {
-    type Ast = FortranAst;
+    fn name(&self) -> &'static str {
+        match self.version {
+            SourceLanguage::Fortran77 => "FORTRAN 77",
+            SourceLanguage::Fortran90 => "FORTRAN 90",
+            SourceLanguage::Fortran95 => "FORTRAN 95",
+            SourceLanguage::Fortran2003 => "FORTRAN 2003",
+            SourceLanguage::Fortran2008 => "FORTRAN 2008",
+            _ => "FORTRAN",
+        }
+    }
 
-    fn parse(&self, source: &str) -> Result<Self::Ast> {
+    fn file_extensions(&self) -> &[&'static str] {
+        match self.version {
+            SourceLanguage::Fortran77 => &["f", "for", "f77"],
+            SourceLanguage::Fortran90 => &["f90"],
+            SourceLanguage::Fortran95 => &["f95"],
+            SourceLanguage::Fortran2003 => &["f03"],
+            SourceLanguage::Fortran2008 => &["f08"],
+            _ => &["f", "for"],
+        }
+    }
+
+    fn parse(&self, source: &SourceFile) -> std::result::Result<RosettaIr, ParseError> {
         let processed = if self.fixed_format {
-            self.preprocess_fixed(source)
+            self.preprocess_fixed(&source.content)
         } else {
-            source.to_string()
+            source.content.clone()
         };
 
         let mut lexer = FortranToken::lexer(&processed);
@@ -453,24 +473,26 @@ impl Frontend for FortranParser {
             match token {
                 Ok(t) => tokens.push(t),
                 Err(_) => {
-                    return Err(TranspileError::LexerError {
-                        message: format!("Invalid token at position {}", lexer.span().start),
-                        location: SourceLocation::new(1, lexer.span().start, lexer.span().start),
+                    return Err(ParseError::UnexpectedToken {
+                        expected: "valid token".to_string(),
+                        found: "invalid".to_string(),
+                        line: 1,
+                        column: lexer.span().start,
                     });
                 }
             }
         }
 
-        // Placeholder: Return empty program
-        // Full implementation would parse tokens into AST
-        Ok(FortranAst::Program {
+        // Parse tokens into AST
+        let ast = FortranAst::Program {
             name: "main".to_string(),
             units: vec![],
-        })
-    }
+        };
 
-    fn language(&self) -> SourceLanguage {
-        self.version
+        // Convert AST to IR and then to RosettaIr
+        let module = FortranToIr::convert(&ast).map_err(|e| ParseError::SemanticError(e.to_string()))?;
+
+        Ok(module.into_rosetta_ir())
     }
 }
 
@@ -481,7 +503,7 @@ impl FortranToIr {
     pub fn convert(ast: &FortranAst) -> Result<IrModule> {
         let FortranAst::Program { name, units: _ } = ast;
 
-        let mut builder = rosetta_ir::IrBuilder::new(name, SourceLanguage::Fortran77);
+        let builder = rosetta_ir::IrBuilder::with_language(name, SourceLanguage::Fortran77);
 
         // TODO: Convert units to IR functions/modules
 
@@ -513,9 +535,14 @@ mod tests {
 
     #[test]
     fn test_parse_simple() {
+        use rosetta_core::{SourceFile, SourceLanguage};
         let parser = FortranParser::fortran90();
-        let source = "PROGRAM TEST\nEND PROGRAM TEST";
-        let result = parser.parse(source);
+        let source = SourceFile {
+            name: "test.f90".to_string(),
+            content: "PROGRAM TEST\nEND PROGRAM TEST".to_string(),
+            language: SourceLanguage::Fortran90,
+        };
+        let result = parser.parse(&source);
 
         assert!(result.is_ok());
     }

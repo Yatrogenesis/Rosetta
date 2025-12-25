@@ -1,0 +1,12 @@
+[package]
+name = "rosetta-prolog"
+version.workspace = true
+edition.workspace = true
+description = "Prolog logic programming frontend for Rosetta transpiler"
+keywords = ["prolog", "logic", "ai", "transpiler"]
+
+[dependencies]
+rosetta-core = { workspace = true }
+rosetta-ir = { workspace = true }
+logos = { workspace = true }
+thiserror = { workspace = true }

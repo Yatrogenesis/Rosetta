@@ -1,0 +1,12 @@
+[package]
+name = "rosetta-planner"
+version.workspace = true
+edition.workspace = true
+description = "PLANNER language frontend for Rosetta transpiler"
+keywords = ["planner", "ai", "symbolic", "transpiler"]
+
+[dependencies]
+rosetta-core = { workspace = true }
+rosetta-ir = { workspace = true }
+logos = { workspace = true }
+thiserror = { workspace = true }

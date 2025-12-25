@@ -13,9 +13,16 @@ members = [
     "crates/rosetta-quickbasic", # QuickBASIC / QBASIC
     "crates/rosetta-ml",         # Standard ML / OCaml
 
+    # Symbolic AI frontends (1970s-1980s paradigms)
+    "crates/rosetta-planner",    # PLANNER (1969, MIT) - Pattern-directed invocation
+    "crates/rosetta-ops5",       # OPS5 (1981, CMU) - Production systems
+    "crates/rosetta-krl",        # KRL (1977, Xerox PARC) - Frame-based knowledge
+    "crates/rosetta-prolog",     # Prolog - Logic programming
+
     # Additional tools
     "crates/rosetta-cli",        # Command-line interface
     "crates/rosetta-validator",  # Numerical equivalence testing
+    "crates/rosetta-gui",        # GUI for transpilation
 ]
 
 [workspace.package]
@@ -24,7 +31,7 @@ edition = "2021"
 authors = ["Francisco Molina <pako.molina@gmail.com>"]
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/Yatrogenesis/Rosetta"
-keywords = ["transpiler", "fortran", "cobol", "lisp", "rust"]
+keywords = ["transpiler", "fortran", "cobol", "lisp", "rust", "prolog", "planner"]
 categories = ["development-tools", "parsing", "compilers"]
 
 [workspace.dependencies]
@@ -51,6 +58,13 @@ prettyplease = "0.2"     # Rust code formatting
 clap = { version = "4.5", features = ["derive"] }
 colored = "2.1"
 
+# GUI
+eframe = "0.29"
+egui = "0.29"
+egui_extras = { version = "0.29", features = ["syntect"] }
+syntect = "5.2"
+rfd = "0.15"             # File dialogs
+
 # Testing
 approx = "0.5"
 proptest = "1.5"
@@ -71,6 +85,10 @@ rosetta-cobol = { path = "crates/rosetta-cobol" }
 rosetta-lisp = { path = "crates/rosetta-lisp" }
 rosetta-quickbasic = { path = "crates/rosetta-quickbasic" }
 rosetta-ml = { path = "crates/rosetta-ml" }
+rosetta-planner = { path = "crates/rosetta-planner" }
+rosetta-ops5 = { path = "crates/rosetta-ops5" }
+rosetta-krl = { path = "crates/rosetta-krl" }
+rosetta-prolog = { path = "crates/rosetta-prolog" }
 rosetta-validator = { path = "crates/rosetta-validator" }
 
 [profile.release]

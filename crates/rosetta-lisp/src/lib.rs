@@ -1,14 +1,14 @@
 //! # Rosetta LISP Frontend
 //!
 //! Parses Common Lisp and Scheme into Rosetta IR.
-//! Critical for PIRS-LIRS integration with genesis01.
 
-use rosetta_core::{Frontend, SourceLanguage, Result};
+use rosetta_core::{Frontend, SourceFile, RosettaIr, ParseError};
 
 pub struct LispParser {
     dialect: LispDialect,
 }
 
+#[derive(Clone, Copy)]
 pub enum LispDialect {
     CommonLisp,
     Scheme,
@@ -25,16 +25,22 @@ impl LispParser {
 }
 
 impl Frontend for LispParser {
-    type Ast = ();
-
-    fn parse(&self, _source: &str) -> Result<Self::Ast> {
-        todo!("LISP parser not yet implemented")
+    fn name(&self) -> &'static str {
+        match self.dialect {
+            LispDialect::CommonLisp => "Common Lisp",
+            LispDialect::Scheme => "Scheme",
+        }
     }
 
-    fn language(&self) -> SourceLanguage {
+    fn file_extensions(&self) -> &[&'static str] {
         match self.dialect {
-            LispDialect::CommonLisp => SourceLanguage::CommonLisp,
-            LispDialect::Scheme => SourceLanguage::Scheme,
+            LispDialect::CommonLisp => &["lisp", "cl", "lsp"],
+            LispDialect::Scheme => &["scm", "ss"],
         }
+    }
+
+    fn parse(&self, _source: &SourceFile) -> std::result::Result<RosettaIr, ParseError> {
+        // TODO: Implement Lisp parser
+        Ok(RosettaIr::default())
     }
 }

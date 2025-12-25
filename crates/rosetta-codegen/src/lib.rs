@@ -9,7 +9,7 @@
 //! 3. **Idiomatic**: Use Rust idioms (iterators, pattern matching)
 //! 4. **Documented**: Include comments about original code
 
-use rosetta_core::{IrType, IrExpr, IrStmt, IrLiteral, BinOp, UnaryOp, TranspileError, Result};
+use rosetta_core::{IrType, IrExpr, IrLiteral, TranspileError, Result};
 use rosetta_ir::{IrModule, IrFunction, IrTypeDef, Visibility};
 use proc_macro2::TokenStream;
 use quote::{quote, format_ident};
@@ -199,7 +199,7 @@ impl RustCodegen {
         let return_ty = self.ir_type_to_rust(&func.return_type)?;
 
         let body_tokens: Vec<TokenStream> = func.body.iter()
-            .map(|node| self.node_to_tokens(node))
+            .map(|expr| self.expr_to_tokens(expr))
             .collect::<Result<_>>()?;
 
         let unsafe_kw = if func.is_unsafe {
@@ -228,12 +228,18 @@ impl RustCodegen {
             IrType::Float(_) => Ok(quote! { f64 }),
             IrType::Bool => Ok(quote! { bool }),
             IrType::String => Ok(quote! { String }),
+            IrType::Char => Ok(quote! { char }),
+            IrType::Unit => Ok(quote! { () }),
             IrType::Array(inner, Some(size)) => {
                 let inner_ty = self.ir_type_to_rust(inner)?;
                 let size_lit = proc_macro2::Literal::usize_unsuffixed(*size);
                 Ok(quote! { [#inner_ty; #size_lit] })
             }
             IrType::Array(inner, None) => {
+                let inner_ty = self.ir_type_to_rust(inner)?;
+                Ok(quote! { Vec<#inner_ty> })
+            }
+            IrType::Vec(inner) => {
                 let inner_ty = self.ir_type_to_rust(inner)?;
                 Ok(quote! { Vec<#inner_ty> })
             }
@@ -245,10 +251,41 @@ impl RustCodegen {
                 let inner_ty = self.ir_type_to_rust(inner)?;
                 Ok(quote! { &mut #inner_ty })
             }
+            IrType::Box(inner) => {
+                let inner_ty = self.ir_type_to_rust(inner)?;
+                Ok(quote! { Box<#inner_ty> })
+            }
+            IrType::Option(inner) => {
+                let inner_ty = self.ir_type_to_rust(inner)?;
+                Ok(quote! { Option<#inner_ty> })
+            }
+            IrType::Result(ok, err) => {
+                let ok_ty = self.ir_type_to_rust(ok)?;
+                let err_ty = self.ir_type_to_rust(err)?;
+                Ok(quote! { Result<#ok_ty, #err_ty> })
+            }
+            IrType::Tuple(types) => {
+                let type_tokens: Vec<TokenStream> = types.iter()
+                    .map(|t| self.ir_type_to_rust(t))
+                    .collect::<Result<_>>()?;
+                Ok(quote! { (#(#type_tokens),*) })
+            }
             IrType::Struct(name) => {
                 let name_ident = format_ident!("{}", name);
                 Ok(quote! { #name_ident })
             }
+            IrType::Fn(params, ret) => {
+                let param_types: Vec<TokenStream> = params.iter()
+                    .map(|t| self.ir_type_to_rust(t))
+                    .collect::<Result<_>>()?;
+                let ret_ty = self.ir_type_to_rust(ret)?;
+                Ok(quote! { fn(#(#param_types),*) -> #ret_ty })
+            }
+            IrType::Iterator(inner) => {
+                let inner_ty = self.ir_type_to_rust(inner)?;
+                Ok(quote! { impl Iterator<Item = #inner_ty> })
+            }
+            IrType::Any => Ok(quote! { Box<dyn std::any::Any> }),
             IrType::Unknown => Ok(quote! { () }),
         }
     }
@@ -262,38 +299,229 @@ impl RustCodegen {
     /// Convert expression to tokens
     fn expr_to_tokens(&self, expr: &IrExpr) -> Result<TokenStream> {
         match expr {
-            IrExpr::Literal(lit) => self.literal_to_tokens(lit),
-            IrExpr::Var(name) => {
+            // === Literals ===
+            IrExpr::Int(i) => Ok(quote! { #i }),
+            IrExpr::Float(f) => {
+                let f_lit = proc_macro2::Literal::f64_unsuffixed(*f);
+                Ok(quote! { #f_lit })
+            }
+            IrExpr::Bool(b) => Ok(quote! { #b }),
+            IrExpr::String(s) => Ok(quote! { #s.to_string() }),
+            IrExpr::Char(c) => Ok(quote! { #c }),
+            IrExpr::Nil => Ok(quote! { None }),
+            IrExpr::Symbol(s) => {
+                let sym = format_ident!("{}", s);
+                Ok(quote! { #sym })
+            }
+
+            // === Variables ===
+            IrExpr::Identifier(name) => {
                 let ident = format_ident!("{}", name);
                 Ok(quote! { #ident })
             }
-            IrExpr::BinOp { op, left, right } => {
+            IrExpr::PatternVar(name) => {
+                let ident = format_ident!("{}", name);
+                Ok(quote! { #ident })
+            }
+
+            // === Operators ===
+            IrExpr::BinaryOp { op, left, right } => {
                 let left_tokens = self.expr_to_tokens(left)?;
                 let right_tokens = self.expr_to_tokens(right)?;
-                let op_tokens = self.binop_to_tokens(*op);
+                let op_tokens = self.string_binop_to_tokens(op);
                 Ok(quote! { (#left_tokens #op_tokens #right_tokens) })
             }
             IrExpr::UnaryOp { op, operand } => {
                 let operand_tokens = self.expr_to_tokens(operand)?;
-                let op_tokens = self.unaryop_to_tokens(*op);
+                let op_tokens = self.string_unaryop_to_tokens(op);
                 Ok(quote! { #op_tokens #operand_tokens })
             }
+
+            // === Function Calls ===
             IrExpr::Call { func, args } => {
-                let func_ident = format_ident!("{}", func);
+                let func_tokens = self.expr_to_tokens(func)?;
                 let arg_tokens: Vec<TokenStream> = args.iter()
                     .map(|a| self.expr_to_tokens(a))
                     .collect::<Result<_>>()?;
-                Ok(quote! { #func_ident(#(#arg_tokens),*) })
+                Ok(quote! { #func_tokens(#(#arg_tokens),*) })
+            }
+
+            // === Data Structures ===
+            IrExpr::List(items) => {
+                let item_tokens: Vec<TokenStream> = items.iter()
+                    .map(|i| self.expr_to_tokens(i))
+                    .collect::<Result<_>>()?;
+                Ok(quote! { vec![#(#item_tokens),*] })
+            }
+            IrExpr::ListCons { head, tail } => {
+                let h = self.expr_to_tokens(head)?;
+                let t = self.expr_to_tokens(tail)?;
+                Ok(quote! { std::iter::once(#h).chain(#t.into_iter()).collect::<Vec<_>>() })
+            }
+            IrExpr::StructInit { name, fields } => {
+                let name_ident = format_ident!("{}", name);
+                let field_inits: Vec<TokenStream> = fields.iter()
+                    .map(|(fname, fval)| {
+                        let fi = format_ident!("{}", fname);
+                        let fv = self.expr_to_tokens(fval)?;
+                        Ok(quote! { #fi: #fv })
+                    })
+                    .collect::<Result<_>>()?;
+                Ok(quote! { #name_ident { #(#field_inits),* } })
+            }
+            IrExpr::Tuple(items) => {
+                let item_tokens: Vec<TokenStream> = items.iter()
+                    .map(|i| self.expr_to_tokens(i))
+                    .collect::<Result<_>>()?;
+                Ok(quote! { (#(#item_tokens),*) })
+            }
+
+            // === Access ===
+            IrExpr::FieldAccess { object, field } => {
+                let obj = self.expr_to_tokens(object)?;
+                let fld = format_ident!("{}", field);
+                Ok(quote! { #obj.#fld })
+            }
+            IrExpr::FieldAssign { object, field, value } => {
+                let obj = format_ident!("{}", object);
+                let fld = format_ident!("{}", field);
+                let val = self.expr_to_tokens(value)?;
+                Ok(quote! { #obj.#fld = #val })
             }
             IrExpr::Index { array, index } => {
                 let arr = self.expr_to_tokens(array)?;
                 let idx = self.expr_to_tokens(index)?;
                 Ok(quote! { #arr[#idx] })
             }
-            IrExpr::Field { object, field } => {
-                let obj = self.expr_to_tokens(object)?;
-                let fld = format_ident!("{}", field);
-                Ok(quote! { #obj.#fld })
+
+            // === Control Flow ===
+            IrExpr::If { condition, then_branch, else_branch } => {
+                let cond = self.expr_to_tokens(condition)?;
+                let then_b = self.expr_to_tokens(then_branch)?;
+                if let Some(else_b) = else_branch {
+                    let else_tokens = self.expr_to_tokens(else_b)?;
+                    Ok(quote! { if #cond { #then_b } else { #else_tokens } })
+                } else {
+                    Ok(quote! { if #cond { #then_b } })
+                }
+            }
+            IrExpr::Cond(branches) => {
+                if branches.is_empty() {
+                    return Ok(quote! { () });
+                }
+                let mut tokens = TokenStream::new();
+                for (i, (cond, body)) in branches.iter().enumerate() {
+                    let c = self.expr_to_tokens(cond)?;
+                    let b = self.expr_to_tokens(body)?;
+                    if i == 0 {
+                        tokens = quote! { if #c { #b } };
+                    } else {
+                        tokens = quote! { #tokens else if #c { #b } };
+                    }
+                }
+                Ok(tokens)
+            }
+            IrExpr::Match { scrutinee, arms } => {
+                let scrut = self.expr_to_tokens(scrutinee)?;
+                let arm_tokens: Vec<TokenStream> = arms.iter()
+                    .map(|(pat, body)| {
+                        let p = self.expr_to_tokens(pat)?;
+                        let b = self.expr_to_tokens(body)?;
+                        Ok(quote! { #p => #b })
+                    })
+                    .collect::<Result<_>>()?;
+                Ok(quote! { match #scrut { #(#arm_tokens),* } })
+            }
+            IrExpr::Block(exprs) => {
+                let expr_tokens: Vec<TokenStream> = exprs.iter()
+                    .map(|e| self.expr_to_tokens(e))
+                    .collect::<Result<_>>()?;
+                Ok(quote! { { #(#expr_tokens;)* } })
+            }
+            IrExpr::Return(expr) => {
+                let e = self.expr_to_tokens(expr)?;
+                Ok(quote! { return #e })
+            }
+
+            // === Assignment ===
+            IrExpr::Assign { target, value } => {
+                let t = format_ident!("{}", target);
+                let v = self.expr_to_tokens(value)?;
+                Ok(quote! { #t = #v })
+            }
+            IrExpr::Let { name, value, body } => {
+                let n = format_ident!("{}", name);
+                let v = self.expr_to_tokens(value)?;
+                let b = self.expr_to_tokens(body)?;
+                Ok(quote! { { let #n = #v; #b } })
+            }
+
+            // === Functions ===
+            IrExpr::Lambda { params, body } => {
+                let param_idents: Vec<_> = params.iter()
+                    .map(|p| format_ident!("{}", p))
+                    .collect();
+                let body_tokens: Vec<TokenStream> = body.iter()
+                    .map(|e| self.expr_to_tokens(e))
+                    .collect::<Result<_>>()?;
+                Ok(quote! { |#(#param_idents),*| { #(#body_tokens;)* } })
+            }
+
+            // === Lisp-specific (generate as comments or runtime calls) ===
+            IrExpr::Quote(expr) => {
+                let e = self.expr_to_tokens(expr)?;
+                Ok(quote! { /* quote */ #e })
+            }
+            IrExpr::Quasiquote(expr) => {
+                let e = self.expr_to_tokens(expr)?;
+                Ok(quote! { /* quasiquote */ #e })
+            }
+            IrExpr::Unquote(expr) => {
+                let e = self.expr_to_tokens(expr)?;
+                Ok(quote! { #e })
+            }
+
+            // === Logic/AI specific (generate runtime calls) ===
+            IrExpr::Goal { pattern, body } => {
+                let p = self.expr_to_tokens(pattern)?;
+                let b: Vec<TokenStream> = body.iter()
+                    .map(|e| self.expr_to_tokens(e))
+                    .collect::<Result<_>>()?;
+                Ok(quote! { goal(#p, || { #(#b;)* }) })
+            }
+            IrExpr::Unify { left, right } => {
+                let l = self.expr_to_tokens(left)?;
+                let r = self.expr_to_tokens(right)?;
+                Ok(quote! { unify(#l, #r) })
+            }
+            IrExpr::PatternMatch { value, pattern } => {
+                let v = self.expr_to_tokens(value)?;
+                let p = self.expr_to_tokens(pattern)?;
+                Ok(quote! { matches!(#v, #p) })
+            }
+            IrExpr::Choice(choices) => {
+                let choice_tokens: Vec<TokenStream> = choices.iter()
+                    .map(|c| self.expr_to_tokens(c))
+                    .collect::<Result<_>>()?;
+                Ok(quote! { choice([#(|| #choice_tokens),*]) })
+            }
+
+            // === Production systems (OPS5) ===
+            IrExpr::WmeCreate { class, attributes } => {
+                let c = format_ident!("{}", class);
+                let attrs: Vec<TokenStream> = attributes.iter()
+                    .map(|(k, v)| {
+                        let ki = format_ident!("{}", k);
+                        let vi = self.expr_to_tokens(v)?;
+                        Ok(quote! { #ki: #vi })
+                    })
+                    .collect::<Result<_>>()?;
+                Ok(quote! { wm.insert(#c { #(#attrs),* }) })
+            }
+
+            // === Comments ===
+            IrExpr::Comment(text) => {
+                Ok(quote! { /* #text */ })
             }
         }
     }
@@ -312,39 +540,44 @@ impl RustCodegen {
         }
     }
 
-    /// Convert binary operator to tokens
-    fn binop_to_tokens(&self, op: BinOp) -> TokenStream {
+    /// Convert string binary operator to tokens
+    fn string_binop_to_tokens(&self, op: &str) -> TokenStream {
         match op {
-            BinOp::Add => quote! { + },
-            BinOp::Sub => quote! { - },
-            BinOp::Mul => quote! { * },
-            BinOp::Div => quote! { / },
-            BinOp::Mod => quote! { % },
-            BinOp::Eq => quote! { == },
-            BinOp::Ne => quote! { != },
-            BinOp::Lt => quote! { < },
-            BinOp::Le => quote! { <= },
-            BinOp::Gt => quote! { > },
-            BinOp::Ge => quote! { >= },
-            BinOp::And => quote! { && },
-            BinOp::Or => quote! { || },
-            BinOp::Xor => quote! { ^ },
-            BinOp::BitAnd => quote! { & },
-            BinOp::BitOr => quote! { | },
-            BinOp::BitXor => quote! { ^ },
-            BinOp::Shl => quote! { << },
-            BinOp::Shr => quote! { >> },
+            "+" | "add" => quote! { + },
+            "-" | "sub" => quote! { - },
+            "*" | "mul" => quote! { * },
+            "/" | "div" => quote! { / },
+            "%" | "mod" | "rem" => quote! { % },
+            "==" | "eq" => quote! { == },
+            "!=" | "ne" | "<>" => quote! { != },
+            "<" | "lt" => quote! { < },
+            "<=" | "le" => quote! { <= },
+            ">" | "gt" => quote! { > },
+            ">=" | "ge" => quote! { >= },
+            "&&" | "and" => quote! { && },
+            "||" | "or" => quote! { || },
+            "^" | "xor" => quote! { ^ },
+            "&" | "bitand" => quote! { & },
+            "|" | "bitor" => quote! { | },
+            "<<" | "shl" => quote! { << },
+            ">>" | "shr" => quote! { >> },
+            "**" | "pow" => quote! { .pow },
+            _ => {
+                let op_ident = format_ident!("{}", op);
+                quote! { .#op_ident() }
+            }
         }
     }
 
-    /// Convert unary operator to tokens
-    fn unaryop_to_tokens(&self, op: UnaryOp) -> TokenStream {
+    /// Convert string unary operator to tokens
+    fn string_unaryop_to_tokens(&self, op: &str) -> TokenStream {
         match op {
-            UnaryOp::Neg => quote! { - },
-            UnaryOp::Not => quote! { ! },
-            UnaryOp::BitNot => quote! { ! },
-            UnaryOp::Deref => quote! { * },
-            UnaryOp::Ref => quote! { & },
+            "-" | "neg" => quote! { - },
+            "!" | "not" => quote! { ! },
+            "~" | "bitnot" => quote! { ! },
+            "*" | "deref" => quote! { * },
+            "&" | "ref" => quote! { & },
+            _ => quote! { /* unknown unary op */ }
         }
     }
 
@@ -375,7 +608,7 @@ mod tests {
 
     #[test]
     fn test_basic_codegen() {
-        let mut builder = IrBuilder::new("test", SourceLanguage::Fortran77);
+        let mut builder = IrBuilder::with_language("test", SourceLanguage::Fortran77);
         builder.add_function(rosetta_ir::IrFunction {
             name: "add".to_string(),
             generics: vec![],
