@@ -44,6 +44,7 @@ use thiserror::Error;
 /// Source language being transpiled
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize)]
 pub enum SourceLanguage {
+    // === FORTRAN Family ===
     /// FORTRAN 77
     Fortran77,
     /// FORTRAN 90
@@ -54,30 +55,67 @@ pub enum SourceLanguage {
     Fortran2003,
     /// FORTRAN 2008
     Fortran2008,
+
+    // === Business Languages ===
     /// COBOL (any version)
     Cobol,
+    /// PL/I (1964, IBM)
+    Pli,
+
+    // === Lisp Family ===
     /// Common Lisp
     CommonLisp,
     /// Scheme
     Scheme,
+
+    // === BASIC Family ===
     /// QuickBASIC / QBASIC
     QuickBasic,
+
+    // === ML Family ===
     /// Standard ML
     StandardML,
     /// OCaml
     OCaml,
-    /// Pascal
+
+    // === Structured/Educational ===
+    /// Pascal (Turbo Pascal, Free Pascal, Delphi)
     Pascal,
+    /// ALGOL 60
+    Algol60,
+    /// ALGOL 68
+    Algol68,
+
+    // === Systems ===
     /// Legacy C (K&R style)
     LegacyC,
+    /// Ada (83, 95, 2005, 2012)
+    Ada,
+
+    // === Array Processing ===
+    /// APL (1966, Iverson)
+    Apl,
+
+    // === String Processing ===
+    /// SNOBOL4 (1962, Bell Labs)
+    Snobol,
+
+    // === Object-Oriented ===
+    /// Simula 67 (first OOP language)
+    Simula,
+
+    // === Symbolic AI / Knowledge Representation ===
     /// PLANNER (1969, MIT)
     Planner,
     /// OPS5 (1981, CMU)
     Ops5,
     /// KRL (1977, Xerox PARC)
     Krl,
-    /// Prolog
+    /// Prolog (logic programming)
     Prolog,
+    /// CLIPS (1985, NASA)
+    Clips,
+
     /// Unknown/Generic
     Unknown,
 }
@@ -97,17 +135,25 @@ impl SourceLanguage {
                 &["f", "for", "f77", "f90", "f95", "f03", "f08"]
             }
             Self::Cobol => &["cob", "cbl", "cpy"],
+            Self::Pli => &["pli", "pl1", "ppl"],
             Self::CommonLisp => &["lisp", "cl", "lsp"],
             Self::Scheme => &["scm", "ss"],
             Self::QuickBasic => &["bas", "bi"],
             Self::StandardML => &["sml", "ml", "sig"],
             Self::OCaml => &["ml", "mli"],
-            Self::Pascal => &["pas", "pp"],
+            Self::Pascal => &["pas", "pp", "dpr"],
+            Self::Algol60 => &["alg", "a60"],
+            Self::Algol68 => &["a68"],
             Self::LegacyC => &["c", "h"],
+            Self::Ada => &["ada", "adb", "ads"],
+            Self::Apl => &["apl", "aplf", "aplo"],
+            Self::Snobol => &["sno", "spt", "spitbol"],
+            Self::Simula => &["sim", "simula"],
             Self::Planner => &["pln", "planner"],
             Self::Ops5 => &["ops", "ops5"],
             Self::Krl => &["krl"],
             Self::Prolog => &["pl", "pro", "prolog"],
+            Self::Clips => &["clp", "clips"],
             Self::Unknown => &[],
         }
     }
@@ -119,7 +165,17 @@ impl SourceLanguage {
 
     /// Check if language is a symbolic AI language
     pub fn is_symbolic_ai(&self) -> bool {
-        matches!(self, Self::Planner | Self::Ops5 | Self::Krl | Self::Prolog)
+        matches!(self, Self::Planner | Self::Ops5 | Self::Krl | Self::Prolog | Self::Clips)
+    }
+
+    /// Check if language is an array-oriented language
+    pub fn is_array_oriented(&self) -> bool {
+        matches!(self, Self::Apl)
+    }
+
+    /// Check if language supports OOP
+    pub fn is_object_oriented(&self) -> bool {
+        matches!(self, Self::Simula | Self::Ada)
     }
 
     /// Check if language uses Lisp-style s-expressions
@@ -180,22 +236,41 @@ impl SourceFile {
     fn detect_language(filename: &str) -> SourceLanguage {
         let ext = filename.rsplit('.').next().unwrap_or("");
         match ext.to_lowercase().as_str() {
+            // FORTRAN
             "f" | "for" | "f77" => SourceLanguage::Fortran77,
             "f90" => SourceLanguage::Fortran90,
             "f95" => SourceLanguage::Fortran95,
             "f03" => SourceLanguage::Fortran2003,
             "f08" => SourceLanguage::Fortran2008,
+            // Business
             "cob" | "cbl" | "cpy" => SourceLanguage::Cobol,
+            "pli" | "pl1" | "ppl" => SourceLanguage::Pli,
+            // Lisp
             "lisp" | "cl" | "lsp" => SourceLanguage::CommonLisp,
             "scm" | "ss" => SourceLanguage::Scheme,
+            // BASIC
             "bas" | "bi" => SourceLanguage::QuickBasic,
+            // ML
             "sml" | "sig" => SourceLanguage::StandardML,
             "ml" | "mli" => SourceLanguage::OCaml,
-            "pas" | "pp" => SourceLanguage::Pascal,
+            // Structured
+            "pas" | "pp" | "dpr" | "dpk" => SourceLanguage::Pascal,
+            "alg" | "a60" => SourceLanguage::Algol60,
+            "a68" => SourceLanguage::Algol68,
+            // Systems
+            "ada" | "adb" | "ads" => SourceLanguage::Ada,
+            // Array
+            "apl" | "aplf" | "aplo" => SourceLanguage::Apl,
+            // String
+            "sno" | "spt" | "spitbol" => SourceLanguage::Snobol,
+            // OOP
+            "sim" | "simula" => SourceLanguage::Simula,
+            // Symbolic AI
             "pln" | "planner" => SourceLanguage::Planner,
             "ops" | "ops5" => SourceLanguage::Ops5,
             "krl" => SourceLanguage::Krl,
             "pl" | "pro" | "prolog" => SourceLanguage::Prolog,
+            "clp" | "clips" => SourceLanguage::Clips,
             _ => SourceLanguage::Unknown,
         }
     }

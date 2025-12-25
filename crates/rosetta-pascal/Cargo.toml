@@ -1,0 +1,12 @@
+[package]
+name = "rosetta-pascal"
+version = "0.1.0"
+edition = "2021"
+description = "Pascal language frontend for Rosetta transpiler"
+license = "MIT"
+
+[dependencies]
+rosetta-core = { path = "../rosetta-core" }
+rosetta-ir = { path = "../rosetta-ir" }
+logos = "0.14"
+serde = { version = "1.0", features = ["derive"] }
