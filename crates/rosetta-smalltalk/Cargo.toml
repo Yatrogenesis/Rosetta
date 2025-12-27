@@ -1,0 +1,16 @@
+[package]
+name = "rosetta-smalltalk"
+version.workspace = true
+edition.workspace = true
+description = "Smalltalk language frontend for Rosetta transpiler"
+keywords = ["smalltalk", "oop", "parser", "transpiler", "message-passing"]
+categories = ["development-tools", "parsing", "compilers"]
+
+[dependencies]
+rosetta-core.workspace = true
+rosetta-ir.workspace = true
+logos.workspace = true
+thiserror.workspace = true
+anyhow.workspace = true
+
+[dev-dependencies]

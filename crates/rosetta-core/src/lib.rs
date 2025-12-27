@@ -109,6 +109,16 @@ pub enum SourceLanguage {
     // === Object-Oriented ===
     /// Simula 67 (first OOP language)
     Simula,
+    /// Smalltalk-80 (1972, Xerox PARC)
+    Smalltalk,
+
+    // === Stack-based/Concatenative ===
+    /// Forth (1970, Charles Moore)
+    Forth,
+
+    // === Modular Languages ===
+    /// Modula-2 (1978, Wirth)
+    Modula2,
 
     // === Symbolic AI / Knowledge Representation ===
     /// PLANNER (1969, MIT)
@@ -158,6 +168,9 @@ impl SourceLanguage {
             Self::Apl => &["apl", "aplf", "aplo"],
             Self::Snobol => &["sno", "spt", "spitbol"],
             Self::Simula => &["sim", "simula"],
+            Self::Smalltalk => &["st", "sm", "cs"],
+            Self::Forth => &["fs", "fth", "4th", "forth", "f"],
+            Self::Modula2 => &["mod", "m2", "def", "mi"],
             Self::Planner => &["pln", "planner"],
             Self::Ops5 => &["ops", "ops5"],
             Self::Krl => &["krl"],

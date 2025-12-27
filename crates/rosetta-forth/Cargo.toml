@@ -1,0 +1,16 @@
+[package]
+name = "rosetta-forth"
+version.workspace = true
+edition.workspace = true
+description = "Forth language frontend for Rosetta transpiler"
+keywords = ["forth", "stack", "parser", "transpiler", "concatenative"]
+categories = ["development-tools", "parsing", "compilers"]
+
+[dependencies]
+rosetta-core.workspace = true
+rosetta-ir.workspace = true
+logos.workspace = true
+thiserror.workspace = true
+anyhow.workspace = true
+
+[dev-dependencies]
