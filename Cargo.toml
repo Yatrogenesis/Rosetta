@@ -5,6 +5,8 @@ members = [
     "crates/rosetta-core",       # Common types, IR, traits
     "crates/rosetta-ir",         # Intermediate Representation
     "crates/rosetta-codegen",    # Rust code generation
+    "crates/rosetta-c",          # C code generation
+    "crates/rosetta-wasm",       # WebAssembly code generation
 
     # Frontend parsers (legacy languages)
     "crates/rosetta-fortran",    # FORTRAN 77/90/95/2003/2008
@@ -113,6 +115,8 @@ rosetta-ops5 = { path = "crates/rosetta-ops5" }
 rosetta-krl = { path = "crates/rosetta-krl" }
 rosetta-prolog = { path = "crates/rosetta-prolog" }
 rosetta-validator = { path = "crates/rosetta-validator" }
+rosetta-c = { path = "crates/rosetta-c" }
+rosetta-wasm = { path = "crates/rosetta-wasm" }
 
 [profile.release]
 opt-level = 3
