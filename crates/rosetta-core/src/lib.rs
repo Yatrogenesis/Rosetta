@@ -61,6 +61,12 @@ pub enum SourceLanguage {
     Cobol,
     /// PL/I (1964, IBM)
     Pli,
+    /// MUMPS/M (1966, healthcare systems)
+    Mumps,
+    /// RPG (1959, IBM AS/400)
+    Rpg,
+    /// REXX (1979, IBM mainframe scripting)
+    Rexx,
 
     // === Lisp Family ===
     /// Common Lisp
@@ -136,6 +142,9 @@ impl SourceLanguage {
             }
             Self::Cobol => &["cob", "cbl", "cpy"],
             Self::Pli => &["pli", "pl1", "ppl"],
+            Self::Mumps => &["m", "mps", "mumps", "ros"],
+            Self::Rpg => &["rpgle", "rpg", "sqlrpgle", "clle"],
+            Self::Rexx => &["rexx", "rex", "rx", "cmd", "exec"],
             Self::CommonLisp => &["lisp", "cl", "lsp"],
             Self::Scheme => &["scm", "ss"],
             Self::QuickBasic => &["bas", "bi"],
@@ -245,6 +254,9 @@ impl SourceFile {
             // Business
             "cob" | "cbl" | "cpy" => SourceLanguage::Cobol,
             "pli" | "pl1" | "ppl" => SourceLanguage::Pli,
+            "m" | "mps" | "mumps" | "ros" => SourceLanguage::Mumps,
+            "rpgle" | "rpg" | "sqlrpgle" | "clle" => SourceLanguage::Rpg,
+            "rexx" | "rex" | "rx" | "exec" => SourceLanguage::Rexx,
             // Lisp
             "lisp" | "cl" | "lsp" => SourceLanguage::CommonLisp,
             "scm" | "ss" => SourceLanguage::Scheme,

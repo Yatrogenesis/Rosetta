@@ -1,0 +1,15 @@
+[package]
+name = "rosetta-rexx"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+description = "REXX scripting language frontend for Rosetta transpiler"
+keywords = ["rexx", "ibm", "mainframe", "scripting", "os2"]
+
+[dependencies]
+rosetta-core.workspace = true
+rosetta-ir.workspace = true
+logos.workspace = true
+serde.workspace = true
+thiserror.workspace = true

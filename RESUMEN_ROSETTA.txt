@@ -1,0 +1,90 @@
+================================================================================
+                         ROSETTA TRANSPILER - RESUMEN
+================================================================================
+
+REPOSITORIO: https://github.com/Yatrogenesis/Rosetta.git
+ULTIMO COMMIT: 78f1869
+
+================================================================================
+                              LENGUAJES SOPORTADOS
+================================================================================
+
+FRONTENDS (Parsers - Codigo fuente a IR):
+------------------------------------------
+1. rosetta-cobol     - COBOL (legacy business)
+2. rosetta-fortran   - FORTRAN 77/90/95/2003/2008 (cientifico)
+3. rosetta-quickbasic- QuickBASIC/QBasic (MS-DOS era)
+4. rosetta-lisp      - Lisp/Scheme (funcional)
+5. rosetta-ml        - ML/OCaml/F# (tipado funcional)
+6. rosetta-planner   - PLANNER 1969 (AI planning)
+7. rosetta-ops5      - OPS5 1977 (production rules)
+8. rosetta-krl       - KRL 1976 (knowledge representation)
+9. rosetta-prolog    - Prolog (logica)
+
+BACKEND (Generador de codigo):
+------------------------------
+- rosetta-codegen    - Genera Rust desde IR
+
+CORE:
+-----
+- rosetta-core       - Tipos base, traits, errores
+- rosetta-ir         - Intermediate Representation
+- rosetta-validator  - Validacion de IR
+
+HERRAMIENTAS:
+-------------
+- rosetta-cli        - Linea de comandos
+- rosetta-gui        - Interfaz grafica (egui)
+
+================================================================================
+                                 ARQUITECTURA
+================================================================================
+
+    Codigo Fuente          Rosetta IR              Codigo Destino
+   +--------------+      +-------------+         +--------------+
+   |   COBOL      |      |             |         |              |
+   |   FORTRAN    | ---> |   IrModule  | ------> |    Rust      |
+   |   LISP       |      |   IrFunc    |         |   (futuro:   |
+   |   PROLOG     |      |   IrStmt    |         |    Python,   |
+   |   OPS5       |      |   IrExpr    |         |    Go, etc)  |
+   |   etc...     |      |             |         |              |
+   +--------------+      +-------------+         +--------------+
+       Frontend              Core                   Backend
+
+================================================================================
+                               ESTADO ACTUAL
+================================================================================
+
+COMPILACION: OK (sin errores)
+TESTS: 29/29 pasando
+GUI: Funcional con egui/eframe
+
+Para ejecutar:
+  cargo run --bin rosetta-gui     # GUI
+  cargo run --bin rosetta-cli     # CLI
+  cargo test                       # Tests
+
+================================================================================
+                          NOTAS SOBRE OUTPUT TRUNCADO
+================================================================================
+
+Los outputs largos se truncan porque:
+1. El directorio target/ contiene ~6000+ archivos de compilacion
+2. Las herramientas limitan output a 30,000 caracteres
+3. Git status mostraba todos los archivos del cache
+
+SOLUCION APLICADA:
+- .gitignore ahora excluye target/
+- Solo se commitean archivos fuente
+
+================================================================================
+                              PROXIMOS PASOS
+================================================================================
+
+1. Agregar mas lenguajes legacy (Ada, Pascal, PL/I)
+2. Implementar backends adicionales (Python, Go, C++)
+3. Mejorar la GUI con syntax highlighting
+4. Agregar validacion semantica completa
+5. Optimizaciones del IR generado
+
+================================================================================

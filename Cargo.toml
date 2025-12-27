@@ -14,6 +14,11 @@ members = [
     "crates/rosetta-quickbasic", # QuickBASIC / QBASIC
     "crates/rosetta-ml",         # Standard ML / OCaml
 
+    # Business/Healthcare/Mainframe critical
+    "crates/rosetta-mumps",      # MUMPS/M (1966, healthcare - Epic, VistA)
+    "crates/rosetta-rpg",        # RPG (1959, IBM AS/400)
+    "crates/rosetta-rexx",       # REXX (1979, IBM mainframe scripting)
+
     # Structured/Educational languages
     "crates/rosetta-pascal",     # Pascal (Turbo, Free Pascal, Delphi)
     "crates/rosetta-algol",      # ALGOL 60/68

@@ -3054,6 +3054,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "rosetta-mumps"
+version = "0.1.0"
+dependencies = [
+ "logos",
+ "rosetta-core",
+ "rosetta-ir",
+ "serde",
+ "thiserror 1.0.69",
+]
+
+[[package]]
 name = "rosetta-ops5"
 version = "0.1.0"
 dependencies = [
@@ -3109,6 +3120,28 @@ version = "0.1.0"
 dependencies = [
  "rosetta-core",
  "rosetta-ir",
+ "thiserror 1.0.69",
+]
+
+[[package]]
+name = "rosetta-rexx"
+version = "0.1.0"
+dependencies = [
+ "logos",
+ "rosetta-core",
+ "rosetta-ir",
+ "serde",
+ "thiserror 1.0.69",
+]
+
+[[package]]
+name = "rosetta-rpg"
+version = "0.1.0"
+dependencies = [
+ "logos",
+ "rosetta-core",
+ "rosetta-ir",
+ "serde",
  "thiserror 1.0.69",
 ]
 
