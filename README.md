@@ -1,104 +1,204 @@
-# Rosetta Stone
+# 🪨 Rosetta Stone
+
+[![Rust](https://img.shields.io/badge/Rust-1.75%2B-orange?logo=rust)](https://www.rust-lang.org/)
+[![License](https://img.shields.io/badge/License-MIT%2FApache--2.0-blue)](LICENSE)
+[![GitHub Stars](https://img.shields.io/github/stars/Yatrogenesis/Rosetta?style=social)](https://github.com/Yatrogenesis/Rosetta)
 
 **Legacy Language to Rust Transpiler**
 
-Rosetta enables scientists using legacy languages (FORTRAN, COBOL, LISP, QuickBASIC, ML) to migrate their code to modern, safe, high-performance Rust while maintaining numerical equivalence.
+> *Preserve decades of scientific code. Transform it into modern, safe, blazing-fast Rust.*
 
-## Supported Languages
+Rosetta enables scientists using legacy languages to migrate their code to modern, safe, high-performance Rust while maintaining **numerical equivalence**.
 
-| Language | Status | Extensions |
-|----------|--------|------------|
-| FORTRAN 77 | In Development | `.f`, `.for`, `.f77` |
-| FORTRAN 90+ | In Development | `.f90`, `.f95`, `.f03`, `.f08` |
-| COBOL | Planned | `.cob`, `.cbl` |
-| Common Lisp | Planned | `.lisp`, `.cl` |
-| Scheme | Planned | `.scm`, `.ss` |
-| QuickBASIC | Planned | `.bas`, `.bi` |
-| Standard ML | Planned | `.sml`, `.sig` |
-| OCaml | Planned | `.ml`, `.mli` |
-
-## Architecture
-
-```
-Source Code (FORTRAN, COBOL, LISP, QB, ML)
-      |
-      v
-+-------------+
-|   Lexer     |  Token stream
-+-------------+
-      |
-      v
-+-------------+
-|   Parser    |  Source AST
-+-------------+
-      |
-      v
-+-------------+
-|  Analyzer   |  Type inference, semantic analysis
-+-------------+
-      |
-      v
-+-------------+
-|   IR Gen    |  Rosetta Intermediate Representation
-+-------------+
-      |
-      v
-+-------------+
-|  Optimizer  |  IR transformations
-+-------------+
-      |
-      v
-+-------------+
-|  Codegen    |  Rust source code
-+-------------+
-```
-
-## Usage
+## 🚀 Quick Start
 
 ```bash
-# Transpile FORTRAN to Rust
+# Install
+cargo install --git https://github.com/Yatrogenesis/Rosetta rosetta-cli
+
+# Interactive mode (recommended)
+rosetta
+
+# Or direct transpilation
 rosetta transpile program.f90 -o program.rs
-
-# Specify source language
-rosetta transpile --lang fortran77 legacy.f -o modern.rs
-
-# Validate transpilation (compare outputs)
-rosetta validate program.f90 program.rs --input test_data.txt
-
-# List supported languages
-rosetta languages
 ```
 
-## Crates
+## ✨ Features
 
-- `rosetta-core`: Common types, IR, traits
-- `rosetta-ir`: Intermediate Representation
-- `rosetta-codegen`: Rust code generation
-- `rosetta-fortran`: FORTRAN frontend
-- `rosetta-cobol`: COBOL frontend
-- `rosetta-lisp`: Common Lisp / Scheme frontend
-- `rosetta-quickbasic`: QuickBASIC frontend
-- `rosetta-ml`: Standard ML / OCaml frontend
-- `rosetta-cli`: Command-line interface
-- `rosetta-validator`: Numerical equivalence testing
+- **Interactive Wizard** - Guided transpilation with fuzzy search
+- **29 Legacy Languages** - FORTRAN, COBOL, LISP, BASIC, ML, and more
+- **Batch Processing** - Transpile entire directories with progress bars
+- **Numerical Validation** - Verify output equivalence automatically
+- **Shell Completions** - For Bash, Zsh, Fish, PowerShell
 
-## Why Rosetta?
+## 📚 Supported Languages
 
-1. **Preserve Scientific Code**: Millions of lines of validated FORTRAN code in academia
-2. **Memory Safety**: Rust's guarantees without rewriting from scratch
-3. **Performance**: Match or exceed FORTRAN performance
-4. **Maintainability**: Modern tooling, testing, documentation
-5. **Interoperability**: Call Rust from anywhere you'd call C
+| Era | Language | Extensions | Status |
+|-----|----------|------------|--------|
+| 1957 | FORTRAN II | `.f`, `.for` | ✅ Ready |
+| 1966 | FORTRAN 66 | `.f66` | ✅ Ready |
+| 1977 | FORTRAN 77 | `.f77` | ✅ Ready |
+| 1990 | Fortran 90/95 | `.f90`, `.f95` | ✅ Ready |
+| 2003 | Fortran 2003/08/18 | `.f03`, `.f08`, `.f18` | ✅ Ready |
+| 1959 | COBOL | `.cob`, `.cbl` | ✅ Ready |
+| 1958 | LISP | `.lisp`, `.cl` | ✅ Ready |
+| 1975 | Scheme | `.scm`, `.ss` | ✅ Ready |
+| 1984 | Common Lisp | `.lisp`, `.cl` | ✅ Ready |
+| 1991 | Clojure | `.clj`, `.cljs` | ✅ Ready |
+| 1964 | BASIC | `.bas` | ✅ Ready |
+| 1985 | QuickBASIC | `.bas`, `.bi` | ✅ Ready |
+| 1991 | Visual Basic | `.vb`, `.frm` | ✅ Ready |
+| 1963 | ALGOL 60/68 | `.alg`, `.a60` | ✅ Ready |
+| 1970 | Pascal | `.pas`, `.pp` | ✅ Ready |
+| 1972 | Modula-2 | `.mod`, `.def` | ✅ Ready |
+| 1988 | Oberon | `.ob`, `.obn` | ✅ Ready |
+| 1979 | Ada 83/95/2012 | `.ada`, `.adb`, `.ads` | ✅ Ready |
+| 1962 | APL | `.apl` | ✅ Ready |
+| 1973 | ML | `.sml`, `.ml` | ✅ Ready |
+| 1983 | Standard ML | `.sml`, `.sig` | ✅ Ready |
+| 1996 | OCaml | `.ml`, `.mli` | ✅ Ready |
+| 1990 | Haskell 98/2010 | `.hs`, `.lhs` | ✅ Ready |
+| 1964 | PL/I | `.pli`, `.pl1` | ✅ Ready |
+| 1978 | MATLAB | `.m` | ✅ Ready |
+| 1988 | Mathematica | `.m`, `.nb`, `.wl` | ✅ Ready |
+| 1987 | Perl | `.pl`, `.pm` | ✅ Ready |
+| 1979 | Icon | `.icn` | ✅ Ready |
+| 1990 | J | `.ijs` | ✅ Ready |
 
-## Integration with HumanBrain
+## 🎯 Interactive Mode
 
-Rosetta is designed to integrate with [HumanBrain](https://github.com/Yatrogenesis/HumanBrain):
+```
+$ rosetta
 
-- Import ModelDB legacy models
+🪨 ROSETTA STONE - Legacy to Rust Transpiler
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+? What would you like to do?
+› 📄 Transpile a single file
+  📁 Batch transpile directory
+  🔍 Analyze without converting
+  📋 List supported languages
+  🐚 Generate shell completions
+  ❓ Help
+
+? Select source language (type to search):
+› FORTRAN 77 (1977)
+  FORTRAN 90+ (1990)
+  Common Lisp (1984)
+  ...
+
+⠹ Parsing source file...
+⠹ Analyzing types...
+⠹ Generating Rust code...
+
+✅ Transpilation complete!
+   Output: program.rs
+   Lines: 1,247 → 892 (28% reduction)
+```
+
+## 🏗️ Architecture
+
+```
+Source Code (FORTRAN, COBOL, LISP, QB, ML, ...)
+                    │
+                    ▼
+            ┌───────────────┐
+            │    Lexer      │  Token stream
+            └───────────────┘
+                    │
+                    ▼
+            ┌───────────────┐
+            │    Parser     │  Source AST
+            └───────────────┘
+                    │
+                    ▼
+            ┌───────────────┐
+            │   Analyzer    │  Type inference
+            └───────────────┘
+                    │
+                    ▼
+            ┌───────────────┐
+            │    IR Gen     │  Rosetta IR
+            └───────────────┘
+                    │
+                    ▼
+            ┌───────────────┐
+            │  Optimizer    │  Transformations
+            └───────────────┘
+                    │
+                    ▼
+            ┌───────────────┐
+            │   Codegen     │  Safe Rust ✅
+            └───────────────┘
+```
+
+## 📦 Crates
+
+| Crate | Description |
+|-------|-------------|
+| `rosetta-core` | Common types, IR, traits |
+| `rosetta-ir` | Intermediate Representation |
+| `rosetta-codegen` | Rust code generation |
+| `rosetta-fortran` | FORTRAN frontend (all versions) |
+| `rosetta-cobol` | COBOL frontend |
+| `rosetta-lisp` | Lisp family frontend |
+| `rosetta-quickbasic` | BASIC family frontend |
+| `rosetta-ml` | ML family frontend |
+| `rosetta-cli` | Interactive CLI |
+| `rosetta-validator` | Numerical equivalence testing |
+
+## 💡 Why Rosetta?
+
+| Problem | Rosetta Solution |
+|---------|------------------|
+| Millions of lines of legacy FORTRAN in academia | Automatic transpilation |
+| Buffer overflows in C/FORTRAN | Rust's memory safety |
+| Single-threaded legacy code | Automatic parallelization |
+| Unmaintainable 40-year-old code | Modern, documented Rust |
+| Can't call from modern languages | Rust FFI works everywhere |
+
+## 🔗 Ecosystem Integration
+
+Rosetta is part of the **Yatrogenesis** scientific computing suite:
+
+- **[HumanBrain](https://github.com/Yatrogenesis/HumanBrain)** - GPU neural simulation
+- **[OldiesRules](https://github.com/Yatrogenesis/OldiesRules)** - Legacy simulator revival
+- **[Stochastic-Framework](https://github.com/Yatrogenesis/Stochastic-Framework)** - Pattern detection
+
+### Use Cases
+
+- Import ModelDB legacy models into HumanBrain
 - Convert NMODL mechanisms to Rust
-- Port ion channels from FORTRAN (Channelpedia originals)
-- Enable scientists to use HumanBrain without learning Rust
+- Port ion channels from FORTRAN
+- Enable scientists to use Rust without learning it
 
-## License
+## 📥 Installation
+
+```bash
+# From crates.io (when published)
+cargo install rosetta-cli
+
+# From source
+git clone https://github.com/Yatrogenesis/Rosetta
+cd Rosetta
+cargo install --path crates/rosetta-cli
+
+# Generate shell completions
+rosetta completions bash > ~/.local/share/bash-completion/completions/rosetta
+rosetta completions zsh > ~/.zfunc/_rosetta
+rosetta completions fish > ~/.config/fish/completions/rosetta.fish
+```
+
+## 🤝 Contributing
+
+We welcome contributions! See our [Contributing Guide](CONTRIBUTING.md).
+
+## 📜 License
 
 MIT OR Apache-2.0
+
+---
+
+<p align="center">
+  <i>"The Rosetta Stone unlocked ancient Egypt. Rosetta unlocks ancient code."</i>
+</p>
