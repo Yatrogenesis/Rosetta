@@ -1,0 +1,91 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Pascal",
+  "scopeName": "source.pascal",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#strings" },
+    { "include": "#keywords" },
+    { "include": "#types" },
+    { "include": "#numbers" },
+    { "include": "#operators" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.block.pascal",
+          "begin": "\\{",
+          "end": "\\}"
+        },
+        {
+          "name": "comment.block.pascal",
+          "begin": "\\(\\*",
+          "end": "\\*\\)"
+        },
+        {
+          "name": "comment.line.pascal",
+          "match": "//.*$"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.single.pascal",
+          "begin": "'",
+          "end": "'",
+          "patterns": [{ "name": "constant.character.escape.pascal", "match": "''" }]
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.pascal",
+          "match": "(?i)\\b(program|unit|uses|interface|implementation|begin|end|if|then|else|case|of|for|to|downto|do|while|repeat|until|with|goto|label|break|continue|exit)\\b"
+        },
+        {
+          "name": "keyword.other.pascal",
+          "match": "(?i)\\b(procedure|function|var|const|type|array|record|set|file|packed|nil|true|false|and|or|not|xor|div|mod|in|shl|shr|as|is)\\b"
+        },
+        {
+          "name": "storage.modifier.pascal",
+          "match": "(?i)\\b(private|protected|public|published|virtual|override|abstract|dynamic|static|inline|forward|external|cdecl|stdcall|register|pascal|safecall)\\b"
+        }
+      ]
+    },
+    "types": {
+      "patterns": [
+        {
+          "name": "storage.type.pascal",
+          "match": "(?i)\\b(integer|longint|shortint|byte|word|cardinal|int64|qword|real|single|double|extended|comp|currency|boolean|char|string|ansistring|widestring|text|pointer|object|class)\\b"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.float.pascal",
+          "match": "\\b[0-9]+\\.[0-9]+([eE][+-]?[0-9]+)?\\b"
+        },
+        {
+          "name": "constant.numeric.hex.pascal",
+          "match": "\\$[0-9a-fA-F]+"
+        },
+        {
+          "name": "constant.numeric.integer.pascal",
+          "match": "\\b[0-9]+\\b"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.pascal",
+          "match": "(\\+|-|\\*|/|:=|=|<>|<|>|<=|>=|@|\\^)"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "COBOL",
+  "scopeName": "source.cobol",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#strings" },
+    { "include": "#divisions" },
+    { "include": "#keywords" },
+    { "include": "#numbers" },
+    { "include": "#picture" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.cobol",
+          "match": "^.{6}[*].*$"
+        },
+        {
+          "name": "comment.line.cobol",
+          "match": "\\*>.*$"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.single.cobol",
+          "begin": "'",
+          "end": "'"
+        },
+        {
+          "name": "string.quoted.double.cobol",
+          "begin": "\"",
+          "end": "\""
+        }
+      ]
+    },
+    "divisions": {
+      "patterns": [
+        {
+          "name": "entity.name.section.cobol",
+          "match": "(?i)\\b(IDENTIFICATION|ENVIRONMENT|DATA|PROCEDURE)\\s+DIVISION\\b"
+        },
+        {
+          "name": "entity.name.section.cobol",
+          "match": "(?i)\\b(WORKING-STORAGE|LINKAGE|FILE|LOCAL-STORAGE)\\s+SECTION\\b"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.cobol",
+          "match": "(?i)\\b(PERFORM|UNTIL|VARYING|THRU|THROUGH|IF|ELSE|END-IF|EVALUATE|WHEN|OTHER|END-EVALUATE|GO\\s+TO|EXIT|STOP\\s+RUN)\\b"
+        },
+        {
+          "name": "keyword.other.cobol",
+          "match": "(?i)\\b(MOVE|TO|ADD|SUBTRACT|MULTIPLY|DIVIDE|GIVING|COMPUTE|INITIALIZE|ACCEPT|DISPLAY|CALL|USING|RETURNING|STRING|UNSTRING|INSPECT|REPLACING)\\b"
+        },
+        {
+          "name": "keyword.control.io.cobol",
+          "match": "(?i)\\b(OPEN|CLOSE|READ|WRITE|REWRITE|DELETE|START|INPUT|OUTPUT|I-O|EXTEND)\\b"
+        },
+        {
+          "name": "storage.type.cobol",
+          "match": "(?i)\\b(PIC|PICTURE|VALUE|OCCURS|TIMES|INDEXED|BY|REDEFINES|FILLER|COMP|COMP-1|COMP-2|COMP-3|COMP-5|BINARY|PACKED-DECIMAL)\\b"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.cobol",
+          "match": "\\b[0-9]+\\.?[0-9]*\\b"
+        }
+      ]
+    },
+    "picture": {
+      "patterns": [
+        {
+          "name": "storage.type.picture.cobol",
+          "match": "(?i)\\bPIC(?:TURE)?\\s+[9XASV()+\\-.,]+\\b"
+        }
+      ]
+    }
+  }
+}

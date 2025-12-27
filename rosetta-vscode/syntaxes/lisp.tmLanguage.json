@@ -1,0 +1,111 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Lisp",
+  "scopeName": "source.lisp",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#strings" },
+    { "include": "#constants" },
+    { "include": "#keywords" },
+    { "include": "#functions" },
+    { "include": "#variables" },
+    { "include": "#numbers" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.semicolon.lisp",
+          "match": ";.*$"
+        },
+        {
+          "name": "comment.block.lisp",
+          "begin": "#\\|",
+          "end": "\\|#"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.lisp",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [{ "name": "constant.character.escape.lisp", "match": "\\\\." }]
+        }
+      ]
+    },
+    "constants": {
+      "patterns": [
+        {
+          "name": "constant.language.lisp",
+          "match": "\\b(t|nil)\\b"
+        },
+        {
+          "name": "constant.language.keyword.lisp",
+          "match": ":[a-zA-Z][a-zA-Z0-9\\-]*"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.lisp",
+          "match": "(?<=\\()\\s*(if|cond|when|unless|case|let|let\\*|flet|labels|lambda|progn|prog1|prog2|block|return|return-from|loop|do|dolist|dotimes|while|catch|throw|unwind-protect)\\b"
+        },
+        {
+          "name": "keyword.other.lisp",
+          "match": "(?<=\\()\\s*(defun|defmacro|defvar|defparameter|defconstant|defstruct|defclass|defmethod|defgeneric|setq|setf|declare|the|values|multiple-value-bind)\\b"
+        }
+      ]
+    },
+    "functions": {
+      "patterns": [
+        {
+          "name": "support.function.lisp",
+          "match": "(?<=\\()\\s*(car|cdr|cons|list|append|reverse|nth|length|assoc|member|mapcar|mapc|maplist|reduce|apply|funcall|eval|quote|function|print|format|read|write|open|close|with-open-file)\\b"
+        },
+        {
+          "name": "support.function.arithmetic.lisp",
+          "match": "(?<=\\()\\s*(\\+|-|\\*|/|mod|rem|floor|ceiling|truncate|round|abs|max|min|expt|sqrt|sin|cos|tan|exp|log)\\b"
+        },
+        {
+          "name": "support.function.predicate.lisp",
+          "match": "(?<=\\()\\s*(eq|eql|equal|equalp|null|atom|listp|consp|numberp|symbolp|stringp|zerop|plusp|minusp|evenp|oddp|and|or|not)\\b"
+        }
+      ]
+    },
+    "variables": {
+      "patterns": [
+        {
+          "name": "variable.other.special.lisp",
+          "match": "\\*[a-zA-Z][a-zA-Z0-9\\-]*\\*"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.float.lisp",
+          "match": "[+-]?[0-9]+\\.[0-9]*([eE][+-]?[0-9]+)?"
+        },
+        {
+          "name": "constant.numeric.ratio.lisp",
+          "match": "[+-]?[0-9]+/[0-9]+"
+        },
+        {
+          "name": "constant.numeric.integer.lisp",
+          "match": "[+-]?[0-9]+"
+        },
+        {
+          "name": "constant.numeric.hex.lisp",
+          "match": "#x[0-9a-fA-F]+"
+        },
+        {
+          "name": "constant.numeric.binary.lisp",
+          "match": "#b[01]+"
+        }
+      ]
+    }
+  }
+}

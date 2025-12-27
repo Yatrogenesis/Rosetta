@@ -48,6 +48,7 @@ members = [
     "crates/rosetta-cli",        # Command-line interface
     "crates/rosetta-validator",  # Numerical equivalence testing
     "crates/rosetta-gui",        # GUI for transpilation
+    "crates/rosetta-docs",       # Documentation generator
 ]
 
 [workspace.package]
@@ -117,6 +118,7 @@ rosetta-prolog = { path = "crates/rosetta-prolog" }
 rosetta-validator = { path = "crates/rosetta-validator" }
 rosetta-c = { path = "crates/rosetta-c" }
 rosetta-wasm = { path = "crates/rosetta-wasm" }
+rosetta-docs = { path = "crates/rosetta-docs" }
 
 [profile.release]
 opt-level = 3

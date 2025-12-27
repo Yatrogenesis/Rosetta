@@ -1,0 +1,104 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "FORTRAN",
+  "scopeName": "source.fortran",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#strings" },
+    { "include": "#keywords" },
+    { "include": "#types" },
+    { "include": "#numbers" },
+    { "include": "#operators" },
+    { "include": "#functions" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.fortran",
+          "match": "^[Cc*!].*$"
+        },
+        {
+          "name": "comment.line.fortran",
+          "match": "!.*$"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.single.fortran",
+          "begin": "'",
+          "end": "'",
+          "patterns": [{ "name": "constant.character.escape.fortran", "match": "''" }]
+        },
+        {
+          "name": "string.quoted.double.fortran",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [{ "name": "constant.character.escape.fortran", "match": "\"\"" }]
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.fortran",
+          "match": "(?i)\\b(PROGRAM|SUBROUTINE|FUNCTION|END|IF|THEN|ELSE|ELSEIF|ENDIF|DO|ENDDO|WHILE|CONTINUE|GOTO|CALL|RETURN|STOP|PAUSE)\\b"
+        },
+        {
+          "name": "keyword.other.fortran",
+          "match": "(?i)\\b(COMMON|DIMENSION|DATA|PARAMETER|IMPLICIT|NONE|SAVE|EXTERNAL|INTRINSIC|EQUIVALENCE|BLOCK|ENTRY|FORMAT|INCLUDE|USE|MODULE|CONTAINS|INTERFACE|END\\s+INTERFACE)\\b"
+        },
+        {
+          "name": "keyword.control.io.fortran",
+          "match": "(?i)\\b(READ|WRITE|PRINT|OPEN|CLOSE|REWIND|BACKSPACE|INQUIRE|ENDFILE)\\b"
+        }
+      ]
+    },
+    "types": {
+      "patterns": [
+        {
+          "name": "storage.type.fortran",
+          "match": "(?i)\\b(INTEGER|REAL|DOUBLE\\s+PRECISION|COMPLEX|LOGICAL|CHARACTER|TYPE|CLASS)\\b"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.float.fortran",
+          "match": "\\b[0-9]+\\.[0-9]*([DEde][+-]?[0-9]+)?\\b"
+        },
+        {
+          "name": "constant.numeric.integer.fortran",
+          "match": "\\b[0-9]+\\b"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.logical.fortran",
+          "match": "(?i)\\.(AND|OR|NOT|EQV|NEQV|TRUE|FALSE)\\."
+        },
+        {
+          "name": "keyword.operator.comparison.fortran",
+          "match": "(?i)\\.(EQ|NE|LT|LE|GT|GE)\\."
+        },
+        {
+          "name": "keyword.operator.arithmetic.fortran",
+          "match": "(\\+|-|\\*|/|\\*\\*)"
+        }
+      ]
+    },
+    "functions": {
+      "patterns": [
+        {
+          "name": "support.function.intrinsic.fortran",
+          "match": "(?i)\\b(ABS|ACOS|ASIN|ATAN|ATAN2|COS|COSH|EXP|LOG|LOG10|MAX|MIN|MOD|SIN|SINH|SQRT|TAN|TANH|INT|REAL|DBLE|CMPLX|CONJG|AIMAG|LEN|TRIM|ADJUSTL|ADJUSTR)\\b"
+        }
+      ]
+    }
+  }
+}

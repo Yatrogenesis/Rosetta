@@ -1,0 +1,17 @@
+[package]
+name = "rosetta-docs"
+version.workspace = true
+edition.workspace = true
+description = "Documentation generator for Rosetta transpiler output"
+keywords = ["documentation", "codegen", "transpiler", "markdown"]
+categories = ["development-tools", "documentation"]
+
+[dependencies]
+rosetta-core.workspace = true
+rosetta-ir.workspace = true
+thiserror.workspace = true
+anyhow.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+
+[dev-dependencies]

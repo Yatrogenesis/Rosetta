@@ -1,0 +1,234 @@
+{
+  "name": "rosetta-transpiler",
+  "displayName": "Rosetta Transpiler",
+  "description": "Language support and transpilation for legacy languages (FORTRAN, COBOL, MUMPS, RPG, Lisp, Pascal, etc.)",
+  "version": "0.1.0",
+  "publisher": "yatrogenesis",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Yatrogenesis/Rosetta"
+  },
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Formatters",
+    "Linters"
+  ],
+  "keywords": [
+    "fortran",
+    "cobol",
+    "mumps",
+    "rpg",
+    "lisp",
+    "pascal",
+    "ada",
+    "transpiler",
+    "legacy"
+  ],
+  "activationEvents": [
+    "onLanguage:fortran",
+    "onLanguage:cobol",
+    "onLanguage:mumps",
+    "onLanguage:rpg",
+    "onLanguage:rexx",
+    "onLanguage:lisp",
+    "onLanguage:pascal",
+    "onLanguage:ada",
+    "onLanguage:apl",
+    "onLanguage:snobol",
+    "onLanguage:algol",
+    "onLanguage:simula",
+    "onLanguage:pli",
+    "onLanguage:quickbasic",
+    "onLanguage:ml",
+    "onLanguage:prolog",
+    "onLanguage:planner",
+    "onLanguage:ops5",
+    "onLanguage:krl",
+    "onLanguage:clips"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "fortran",
+        "aliases": ["FORTRAN", "Fortran", "fortran"],
+        "extensions": [".f", ".for", ".f77", ".f90", ".f95", ".f03", ".f08"],
+        "configuration": "./language-configuration.json"
+      },
+      {
+        "id": "cobol",
+        "aliases": ["COBOL", "Cobol", "cobol"],
+        "extensions": [".cob", ".cbl", ".cobol"],
+        "configuration": "./language-configuration.json"
+      },
+      {
+        "id": "mumps",
+        "aliases": ["MUMPS", "M", "mumps"],
+        "extensions": [".m", ".mps", ".mumps"],
+        "configuration": "./language-configuration.json"
+      },
+      {
+        "id": "rpg",
+        "aliases": ["RPG", "RPGLE", "rpg"],
+        "extensions": [".rpg", ".rpgle", ".sqlrpgle"],
+        "configuration": "./language-configuration.json"
+      },
+      {
+        "id": "rexx",
+        "aliases": ["REXX", "Rexx", "rexx"],
+        "extensions": [".rexx", ".rex", ".exec"],
+        "configuration": "./language-configuration.json"
+      },
+      {
+        "id": "lisp",
+        "aliases": ["Lisp", "Common Lisp", "lisp"],
+        "extensions": [".lisp", ".lsp", ".cl", ".scm", ".scheme"],
+        "configuration": "./lisp-configuration.json"
+      },
+      {
+        "id": "pascal",
+        "aliases": ["Pascal", "pascal"],
+        "extensions": [".pas", ".pp", ".p"],
+        "configuration": "./language-configuration.json"
+      },
+      {
+        "id": "ada",
+        "aliases": ["Ada", "ada"],
+        "extensions": [".ada", ".adb", ".ads"],
+        "configuration": "./language-configuration.json"
+      },
+      {
+        "id": "apl",
+        "aliases": ["APL", "apl"],
+        "extensions": [".apl", ".aplf", ".aplo"],
+        "configuration": "./language-configuration.json"
+      },
+      {
+        "id": "pli",
+        "aliases": ["PL/I", "PLI", "pli"],
+        "extensions": [".pli", ".pl1"],
+        "configuration": "./language-configuration.json"
+      },
+      {
+        "id": "quickbasic",
+        "aliases": ["QuickBASIC", "QBASIC", "quickbasic"],
+        "extensions": [".bas", ".bi"],
+        "configuration": "./language-configuration.json"
+      },
+      {
+        "id": "prolog",
+        "aliases": ["Prolog", "prolog"],
+        "extensions": [".pl", ".pro", ".prolog"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "fortran",
+        "scopeName": "source.fortran",
+        "path": "./syntaxes/fortran.tmLanguage.json"
+      },
+      {
+        "language": "cobol",
+        "scopeName": "source.cobol",
+        "path": "./syntaxes/cobol.tmLanguage.json"
+      },
+      {
+        "language": "mumps",
+        "scopeName": "source.mumps",
+        "path": "./syntaxes/mumps.tmLanguage.json"
+      },
+      {
+        "language": "lisp",
+        "scopeName": "source.lisp",
+        "path": "./syntaxes/lisp.tmLanguage.json"
+      },
+      {
+        "language": "pascal",
+        "scopeName": "source.pascal",
+        "path": "./syntaxes/pascal.tmLanguage.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "rosetta.transpileToRust",
+        "title": "Rosetta: Transpile to Rust"
+      },
+      {
+        "command": "rosetta.transpileToC",
+        "title": "Rosetta: Transpile to C"
+      },
+      {
+        "command": "rosetta.transpileToWasm",
+        "title": "Rosetta: Transpile to WebAssembly"
+      },
+      {
+        "command": "rosetta.showIR",
+        "title": "Rosetta: Show Intermediate Representation"
+      },
+      {
+        "command": "rosetta.validateEquivalence",
+        "title": "Rosetta: Validate Numerical Equivalence"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "resourceLangId =~ /fortran|cobol|mumps|rpg|rexx|lisp|pascal|ada|apl|pli|quickbasic|prolog/",
+          "command": "rosetta.transpileToRust",
+          "group": "rosetta"
+        },
+        {
+          "when": "resourceLangId =~ /fortran|cobol|mumps|rpg|rexx|lisp|pascal|ada|apl|pli|quickbasic|prolog/",
+          "command": "rosetta.transpileToC",
+          "group": "rosetta"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Rosetta Transpiler",
+      "properties": {
+        "rosetta.cliPath": {
+          "type": "string",
+          "default": "",
+          "description": "Path to the Rosetta CLI executable"
+        },
+        "rosetta.defaultTarget": {
+          "type": "string",
+          "enum": ["rust", "c", "wasm"],
+          "default": "rust",
+          "description": "Default transpilation target"
+        },
+        "rosetta.showIROnTranspile": {
+          "type": "boolean",
+          "default": false,
+          "description": "Show IR alongside transpiled code"
+        },
+        "rosetta.autoValidate": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically validate numerical equivalence after transpilation"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "lint": "eslint src --ext ts",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.0",
+    "@typescript-eslint/parser": "^6.13.0",
+    "eslint": "^8.54.0",
+    "typescript": "^5.3.2",
+    "@vscode/vsce": "^2.22.0"
+  }
+}

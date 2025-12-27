@@ -1,0 +1,82 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "MUMPS",
+  "scopeName": "source.mumps",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#strings" },
+    { "include": "#commands" },
+    { "include": "#functions" },
+    { "include": "#variables" },
+    { "include": "#numbers" },
+    { "include": "#operators" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.mumps",
+          "match": ";.*$"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.mumps",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [{ "name": "constant.character.escape.mumps", "match": "\"\"" }]
+        }
+      ]
+    },
+    "commands": {
+      "patterns": [
+        {
+          "name": "keyword.control.mumps",
+          "match": "(?i)\\b(SET|S|KILL|K|NEW|N|IF|I|ELSE|E|FOR|F|DO|D|QUIT|Q|GOTO|G|HALT|H|HANG|WRITE|W|READ|R|OPEN|O|CLOSE|C|USE|U|LOCK|L|XECUTE|X|JOB|J|BREAK|B|VIEW|V|MERGE|M|TSTART|TS|TCOMMIT|TC|TROLLBACK|TRO)\\b"
+        }
+      ]
+    },
+    "functions": {
+      "patterns": [
+        {
+          "name": "support.function.mumps",
+          "match": "\\$[A-Za-z][A-Za-z0-9]*"
+        },
+        {
+          "name": "support.function.intrinsic.mumps",
+          "match": "(?i)\\$(ASCII|A|CHAR|C|DATA|D|EXTRACT|E|FIND|F|FNUMBER|FN|GET|G|JUSTIFY|J|LENGTH|L|NAME|NA|NEXT|N|ORDER|O|PIECE|P|QLENGTH|QL|QSUBSCRIPT|QS|QUERY|Q|RANDOM|R|REVERSE|RE|SELECT|S|STACK|ST|TEXT|T|TRANSLATE|TR|VIEW|V|HOROLOG|H|IO|JOB|KEY|PRINCIPAL|P|QUIT|Q|STORAGE|S|SYSTEM|SY|TEST|TLEVEL|TL|TRESTART|TR|X|Y|ZA|ZB|ZC|ZD|ZE|ZF|ZG|ZH|ZI|ZJ|ZK|ZL|ZM|ZN|ZO|ZP|ZR|ZS|ZT|ZU|ZV|ZW|ZX|ZY|ZZ)"
+        }
+      ]
+    },
+    "variables": {
+      "patterns": [
+        {
+          "name": "variable.other.global.mumps",
+          "match": "\\^[A-Za-z%][A-Za-z0-9]*"
+        },
+        {
+          "name": "variable.other.local.mumps",
+          "match": "[A-Za-z%][A-Za-z0-9]*"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.mumps",
+          "match": "\\b[0-9]+\\.?[0-9]*([Ee][+-]?[0-9]+)?\\b"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.mumps",
+          "match": "(=|<|>|\\[|\\]|#|\\\\|\\+|-|\\*|/|_|\\?|&|!|')"
+        }
+      ]
+    }
+  }
+}
