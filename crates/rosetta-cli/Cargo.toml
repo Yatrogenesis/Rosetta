@@ -14,7 +14,14 @@ rosetta-ir = { workspace = true }
 rosetta-codegen = { workspace = true }
 rosetta-fortran = { workspace = true }
 clap = { workspace = true }
+clap_complete = "4.5"
 colored = { workspace = true }
 anyhow = { workspace = true }
 tracing = { workspace = true }
 tracing-subscriber = { workspace = true }
+
+# Enhanced UX
+indicatif = "0.17"
+dialoguer = { version = "0.11", features = ["fuzzy-select"] }
+console = "0.15"
+walkdir = "2.5"
