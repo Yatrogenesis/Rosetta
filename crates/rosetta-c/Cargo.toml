@@ -1,5 +1,5 @@
 [package]
-name = "rosetta-c"
+name = "rosetta-stone-c"
 version.workspace = true
 edition.workspace = true
 authors.workspace = true
@@ -10,8 +10,8 @@ keywords = ["c", "codegen", "transpiler", "backend"]
 categories = ["development-tools", "compilers"]
 
 [dependencies]
-rosetta-core.workspace = true
-rosetta-ir.workspace = true
+rosetta-stone-core.workspace = true
+rosetta-stone-ir.workspace = true
 thiserror.workspace = true
 anyhow.workspace = true
 

@@ -1,5 +1,5 @@
 [package]
-name = "rosetta-wasm"
+name = "rosetta-stone-wasm"
 version.workspace = true
 edition.workspace = true
 authors.workspace = true
@@ -10,8 +10,8 @@ keywords = ["wasm", "webassembly", "codegen", "transpiler", "backend"]
 categories = ["development-tools", "compilers", "wasm"]
 
 [dependencies]
-rosetta-core.workspace = true
-rosetta-ir.workspace = true
+rosetta-stone-core.workspace = true
+rosetta-stone-ir.workspace = true
 thiserror.workspace = true
 anyhow.workspace = true
 

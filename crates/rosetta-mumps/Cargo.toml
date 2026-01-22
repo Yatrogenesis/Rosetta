@@ -1,5 +1,5 @@
 [package]
-name = "rosetta-mumps"
+name = "rosetta-stone-mumps"
 version.workspace = true
 edition.workspace = true
 authors.workspace = true
@@ -10,8 +10,8 @@ keywords = ["mumps", "m", "healthcare", "vista", "epic"]
 categories = ["development-tools", "parsing", "compilers"]
 
 [dependencies]
-rosetta-core.workspace = true
-rosetta-ir.workspace = true
+rosetta-stone-core.workspace = true
+rosetta-stone-ir.workspace = true
 logos.workspace = true
 serde.workspace = true
 thiserror.workspace = true

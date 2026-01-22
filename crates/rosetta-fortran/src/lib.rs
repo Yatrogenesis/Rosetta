@@ -35,8 +35,8 @@
 //! | FUNCTION | fn(...) -> T |
 
 use logos::Logos;
-use rosetta_core::{Frontend, SourceLanguage, Result, SourceFile, ParseError, RosettaIr, IrExpr, IrType};
-use rosetta_ir::{IrModule, IrFunction, IrParam, IrBuilder, Visibility};
+use rosetta_stone_core::{Frontend, SourceLanguage, Result, SourceFile, ParseError, RosettaIr, IrExpr, IrType};
+use rosetta_stone_ir::{IrModule, IrFunction, IrParam, IrBuilder, Visibility};
 use serde::{Deserialize, Serialize};
 
 /// FORTRAN token types
@@ -539,9 +539,9 @@ impl TokenParser {
             let (line, column) = self.tokens.get(self.pos)
                 .map(|t| (t.line, t.column))
                 .unwrap_or((1, 1));
-            Err(rosetta_core::TranspileError::ParseError {
+            Err(rosetta_stone_core::TranspileError::ParseError {
                 message: format!("Expected {:?}, found {:?}", expected, self.current()),
-                location: rosetta_core::SourceLocation::new(line, column, 0),
+                location: rosetta_stone_core::SourceLocation::new(line, column, 0),
             })
         }
     }
@@ -568,9 +568,9 @@ impl TokenParser {
                 let (line, column) = self.tokens.get(self.pos)
                     .map(|t| (t.line, t.column))
                     .unwrap_or((1, 1));
-                Err(rosetta_core::TranspileError::ParseError {
+                Err(rosetta_stone_core::TranspileError::ParseError {
                     message: "Expected identifier".to_string(),
-                    location: rosetta_core::SourceLocation::new(line, column, 0),
+                    location: rosetta_stone_core::SourceLocation::new(line, column, 0),
                 })
             }
         }
@@ -1038,9 +1038,9 @@ impl TokenParser {
                     let (line, column) = self.tokens.get(self.pos)
                         .map(|t| (t.line, t.column))
                         .unwrap_or((1, 1));
-                    return Err(rosetta_core::TranspileError::ParseError {
+                    return Err(rosetta_stone_core::TranspileError::ParseError {
                         message: "Expected label after GOTO".to_string(),
-                        location: rosetta_core::SourceLocation::new(line, column, 0),
+                        location: rosetta_stone_core::SourceLocation::new(line, column, 0),
                     });
                 }
             }
@@ -1192,9 +1192,9 @@ impl TokenParser {
                             let (line, column) = self.tokens.get(self.pos)
                                 .map(|t| (t.line, t.column))
                                 .unwrap_or((1, 1));
-                            return Err(rosetta_core::TranspileError::ParseError {
+                            return Err(rosetta_stone_core::TranspileError::ParseError {
                                 message: "Expected assignment or call".to_string(),
-                                location: rosetta_core::SourceLocation::new(line, column, 0),
+                                location: rosetta_stone_core::SourceLocation::new(line, column, 0),
                             })
                         }
                     }
@@ -1302,9 +1302,9 @@ impl TokenParser {
                 let (line, column) = self.tokens.get(self.pos)
                     .map(|t| (t.line, t.column))
                     .unwrap_or((1, 1));
-                Err(rosetta_core::TranspileError::ParseError {
+                Err(rosetta_stone_core::TranspileError::ParseError {
                     message: "Expected type".to_string(),
-                    location: rosetta_core::SourceLocation::new(line, column, 0),
+                    location: rosetta_stone_core::SourceLocation::new(line, column, 0),
                 })
             }
         }
@@ -1806,9 +1806,9 @@ impl TokenParser {
                 let (line, column) = self.tokens.get(self.pos)
                     .map(|t| (t.line, t.column))
                     .unwrap_or((1, 1));
-                Err(rosetta_core::TranspileError::ParseError {
+                Err(rosetta_stone_core::TranspileError::ParseError {
                     message: format!("Unexpected token in expression: {:?}", self.current()),
-                    location: rosetta_core::SourceLocation::new(line, column, 0),
+                    location: rosetta_stone_core::SourceLocation::new(line, column, 0),
                 })
             }
         }
@@ -2014,7 +2014,7 @@ impl Frontend for FortranParser {
             ParseError::SemanticError(e.to_string())
         })?;
 
-        Ok(module.into_rosetta_ir())
+        Ok(module.into_rosetta_stone_ir())
     }
 }
 

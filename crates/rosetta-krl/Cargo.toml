@@ -1,5 +1,5 @@
 [package]
-name = "rosetta-krl"
+name = "rosetta-stone-krl"
 version.workspace = true
 edition.workspace = true
 authors.workspace = true
@@ -10,7 +10,7 @@ keywords = ["krl", "ai", "knowledge-representation", "transpiler"]
 categories = ["development-tools", "parsing", "compilers"]
 
 [dependencies]
-rosetta-core = { workspace = true }
-rosetta-ir = { workspace = true }
+rosetta-stone-core = { workspace = true }
+rosetta-stone-ir = { workspace = true }
 logos = { workspace = true }
 thiserror = { workspace = true }

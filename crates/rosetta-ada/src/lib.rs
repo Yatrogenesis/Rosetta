@@ -29,8 +29,8 @@
 //! | generic | <T> generics |
 
 use logos::Logos;
-use rosetta_core::{Frontend, SourceLanguage, SourceFile, ParseError, RosettaIr};
-use rosetta_ir::IrBuilder;
+use rosetta_stone_core::{Frontend, SourceLanguage, SourceFile, ParseError, RosettaIr};
+use rosetta_stone_ir::IrBuilder;
 use serde::{Deserialize, Serialize};
 
 /// Ada token types
@@ -707,7 +707,7 @@ impl Frontend for AdaParser {
         // Parse and convert to IR
         // TODO: Full parsing implementation
 
-        Ok(builder.build().into_rosetta_ir())
+        Ok(builder.build().into_rosetta_stone_ir())
     }
 }
 
@@ -723,7 +723,7 @@ impl AdaToIr {
         }
     }
 
-    pub fn convert(&mut self, _ast: &AdaAst) -> rosetta_core::Result<rosetta_ir::IrModule> {
+    pub fn convert(&mut self, _ast: &AdaAst) -> rosetta_stone_core::Result<rosetta_stone_ir::IrModule> {
         // TODO: Full conversion
         Ok(self.builder.build_clone())
     }

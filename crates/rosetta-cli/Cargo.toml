@@ -1,5 +1,5 @@
 [package]
-name = "rosetta-cli"
+name = "rosetta-stone-cli"
 version.workspace = true
 edition.workspace = true
 authors.workspace = true
@@ -14,10 +14,10 @@ name = "rosetta"
 path = "src/main.rs"
 
 [dependencies]
-rosetta-core = { workspace = true }
-rosetta-ir = { workspace = true }
-rosetta-codegen = { workspace = true }
-rosetta-fortran = { workspace = true }
+rosetta-stone-core = { workspace = true }
+rosetta-stone-ir = { workspace = true }
+rosetta-stone-codegen = { workspace = true }
+rosetta-stone-fortran = { workspace = true }
 clap = { workspace = true }
 clap_complete = "4.5"
 colored = { workspace = true }

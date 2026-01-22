@@ -9,8 +9,8 @@
 //! 3. **Idiomatic**: Use Rust idioms (iterators, pattern matching)
 //! 4. **Documented**: Include comments about original code
 
-use rosetta_core::{IrType, IrExpr, IrLiteral, TranspileError, Result};
-use rosetta_ir::{IrModule, IrFunction, IrTypeDef, Visibility};
+use rosetta_stone_core::{IrType, IrExpr, IrLiteral, TranspileError, Result};
+use rosetta_stone_ir::{IrModule, IrFunction, IrTypeDef, Visibility};
 use proc_macro2::TokenStream;
 use quote::{quote, format_ident};
 
@@ -292,7 +292,7 @@ impl RustCodegen {
 
     /// Convert IR node to tokens
     #[allow(dead_code)]
-    fn node_to_tokens(&self, _node: &rosetta_core::IrNode) -> Result<TokenStream> {
+    fn node_to_tokens(&self, _node: &rosetta_stone_core::IrNode) -> Result<TokenStream> {
         // Placeholder - full implementation would handle all node types
         Ok(quote! {})
     }
@@ -605,23 +605,23 @@ impl RustCodegen {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use rosetta_core::SourceLanguage;
-    use rosetta_ir::IrBuilder;
+    use rosetta_stone_core::SourceLanguage;
+    use rosetta_stone_ir::IrBuilder;
 
     #[test]
     fn test_basic_codegen() {
         let mut builder = IrBuilder::with_language("test", SourceLanguage::Fortran77);
-        builder.add_function(rosetta_ir::IrFunction {
+        builder.add_function(rosetta_stone_ir::IrFunction {
             name: "add".to_string(),
             generics: vec![],
             params: vec![
-                rosetta_ir::IrParam {
+                rosetta_stone_ir::IrParam {
                     name: "a".to_string(),
                     ty: IrType::Int(32),
                     is_mutable: false,
                     by_ref: false,
                 },
-                rosetta_ir::IrParam {
+                rosetta_stone_ir::IrParam {
                     name: "b".to_string(),
                     ty: IrType::Int(32),
                     is_mutable: false,

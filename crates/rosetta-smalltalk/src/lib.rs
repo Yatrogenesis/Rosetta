@@ -14,8 +14,8 @@
 //! - Comments "in double quotes"
 
 use logos::Logos;
-use rosetta_core::{IrType, IrExpr, SourceLanguage, Result, TranspileError, SourceLocation};
-use rosetta_ir::{IrModule, IrFunction, IrBuilder, IrParam, Visibility, IrTypeDef};
+use rosetta_stone_core::{IrType, IrExpr, SourceLanguage, Result, TranspileError, SourceLocation};
+use rosetta_stone_ir::{IrModule, IrFunction, IrBuilder, IrParam, Visibility, IrTypeDef};
 
 /// Smalltalk tokens
 #[derive(Logos, Debug, Clone, PartialEq)]

@@ -14,8 +14,8 @@
 //! ALGOL 68 (1968) added orthogonal design, user-defined types, and more.
 
 use logos::Logos;
-use rosetta_core::{Frontend, SourceLanguage, SourceFile, ParseError, RosettaIr};
-use rosetta_ir::IrBuilder;
+use rosetta_stone_core::{Frontend, SourceLanguage, SourceFile, ParseError, RosettaIr};
+use rosetta_stone_ir::IrBuilder;
 use serde::{Deserialize, Serialize};
 
 /// ALGOL 60 token types
@@ -396,7 +396,7 @@ impl Frontend for AlgolParser {
         }
 
         let builder = IrBuilder::with_language("algol_module", SourceLanguage::Algol60);
-        Ok(builder.build().into_rosetta_ir())
+        Ok(builder.build().into_rosetta_stone_ir())
     }
 }
 

@@ -2971,50 +2971,50 @@ dependencies = [
 ]
 
 [[package]]
-name = "rosetta-ada"
+name = "rosetta-stone-ada"
 version = "0.1.0"
 dependencies = [
  "logos",
- "rosetta-core",
- "rosetta-ir",
+ "rosetta-stone-core",
+ "rosetta-stone-ir",
  "serde",
  "thiserror 1.0.69",
 ]
 
 [[package]]
-name = "rosetta-algol"
+name = "rosetta-stone-algol"
 version = "0.1.0"
 dependencies = [
  "logos",
- "rosetta-core",
- "rosetta-ir",
+ "rosetta-stone-core",
+ "rosetta-stone-ir",
  "serde",
  "thiserror 1.0.69",
 ]
 
 [[package]]
-name = "rosetta-apl"
+name = "rosetta-stone-apl"
 version = "0.1.0"
 dependencies = [
  "logos",
- "rosetta-core",
- "rosetta-ir",
+ "rosetta-stone-core",
+ "rosetta-stone-ir",
  "serde",
  "thiserror 1.0.69",
 ]
 
 [[package]]
-name = "rosetta-c"
+name = "rosetta-stone-c"
 version = "0.1.0"
 dependencies = [
  "anyhow",
- "rosetta-core",
- "rosetta-ir",
+ "rosetta-stone-core",
+ "rosetta-stone-ir",
  "thiserror 1.0.69",
 ]
 
 [[package]]
-name = "rosetta-cli"
+name = "rosetta-stone-cli"
 version = "0.1.0"
 dependencies = [
  "anyhow",
@@ -3024,50 +3024,50 @@ dependencies = [
  "console",
  "dialoguer",
  "indicatif",
- "rosetta-codegen",
- "rosetta-core",
- "rosetta-fortran",
- "rosetta-ir",
+ "rosetta-stone-codegen",
+ "rosetta-stone-core",
+ "rosetta-stone-fortran",
+ "rosetta-stone-ir",
  "tracing",
  "tracing-subscriber",
  "walkdir",
 ]
 
 [[package]]
-name = "rosetta-clips"
+name = "rosetta-stone-clips"
 version = "0.1.0"
 dependencies = [
  "logos",
- "rosetta-core",
- "rosetta-ir",
+ "rosetta-stone-core",
+ "rosetta-stone-ir",
  "serde",
  "thiserror 1.0.69",
 ]
 
 [[package]]
-name = "rosetta-cobol"
+name = "rosetta-stone-cobol"
 version = "0.1.0"
 dependencies = [
- "rosetta-core",
- "rosetta-ir",
+ "rosetta-stone-core",
+ "rosetta-stone-ir",
  "thiserror 1.0.69",
 ]
 
 [[package]]
-name = "rosetta-codegen"
+name = "rosetta-stone-codegen"
 version = "0.1.0"
 dependencies = [
  "prettyplease",
  "proc-macro2",
  "quote",
- "rosetta-core",
- "rosetta-ir",
+ "rosetta-stone-core",
+ "rosetta-stone-ir",
  "syn 2.0.111",
  "thiserror 1.0.69",
 ]
 
 [[package]]
-name = "rosetta-core"
+name = "rosetta-stone-core"
 version = "0.1.0"
 dependencies = [
  "serde",
@@ -3075,59 +3075,59 @@ dependencies = [
 ]
 
 [[package]]
-name = "rosetta-docs"
+name = "rosetta-stone-docs"
 version = "0.1.0"
 dependencies = [
  "anyhow",
- "rosetta-core",
- "rosetta-ir",
+ "rosetta-stone-core",
+ "rosetta-stone-ir",
  "serde",
  "serde_json",
  "thiserror 1.0.69",
 ]
 
 [[package]]
-name = "rosetta-forth"
+name = "rosetta-stone-forth"
 version = "0.1.0"
 dependencies = [
  "anyhow",
  "logos",
- "rosetta-core",
- "rosetta-ir",
+ "rosetta-stone-core",
+ "rosetta-stone-ir",
  "thiserror 1.0.69",
 ]
 
 [[package]]
-name = "rosetta-fortran"
+name = "rosetta-stone-fortran"
 version = "0.1.0"
 dependencies = [
  "logos",
- "rosetta-core",
- "rosetta-ir",
+ "rosetta-stone-core",
+ "rosetta-stone-ir",
  "serde",
  "thiserror 1.0.69",
 ]
 
 [[package]]
-name = "rosetta-gui"
+name = "rosetta-stone-gui"
 version = "0.1.0"
 dependencies = [
  "anyhow",
  "eframe",
  "egui",
  "rfd",
- "rosetta-cobol",
- "rosetta-codegen",
- "rosetta-core",
- "rosetta-fortran",
- "rosetta-ir",
- "rosetta-krl",
- "rosetta-lisp",
- "rosetta-ml",
- "rosetta-ops5",
- "rosetta-planner",
- "rosetta-prolog",
- "rosetta-quickbasic",
+ "rosetta-stone-cobol",
+ "rosetta-stone-codegen",
+ "rosetta-stone-core",
+ "rosetta-stone-fortran",
+ "rosetta-stone-ir",
+ "rosetta-stone-krl",
+ "rosetta-stone-lisp",
+ "rosetta-stone-ml",
+ "rosetta-stone-ops5",
+ "rosetta-stone-planner",
+ "rosetta-stone-prolog",
+ "rosetta-stone-quickbasic",
  "serde",
  "serde_json",
  "syntect",
@@ -3135,196 +3135,196 @@ dependencies = [
 ]
 
 [[package]]
-name = "rosetta-ir"
+name = "rosetta-stone-ir"
 version = "0.1.0"
 dependencies = [
- "rosetta-core",
+ "rosetta-stone-core",
  "serde",
  "thiserror 1.0.69",
 ]
 
 [[package]]
-name = "rosetta-krl"
+name = "rosetta-stone-krl"
 version = "0.1.0"
 dependencies = [
  "logos",
- "rosetta-core",
- "rosetta-ir",
+ "rosetta-stone-core",
+ "rosetta-stone-ir",
  "thiserror 1.0.69",
 ]
 
 [[package]]
-name = "rosetta-lisp"
+name = "rosetta-stone-lisp"
 version = "0.1.0"
 dependencies = [
- "rosetta-core",
- "rosetta-ir",
+ "rosetta-stone-core",
+ "rosetta-stone-ir",
  "thiserror 1.0.69",
 ]
 
 [[package]]
-name = "rosetta-ml"
+name = "rosetta-stone-ml"
 version = "0.1.0"
 dependencies = [
- "rosetta-core",
- "rosetta-ir",
+ "rosetta-stone-core",
+ "rosetta-stone-ir",
  "thiserror 1.0.69",
 ]
 
 [[package]]
-name = "rosetta-modula2"
+name = "rosetta-stone-modula2"
 version = "0.1.0"
 dependencies = [
  "anyhow",
  "logos",
- "rosetta-core",
- "rosetta-ir",
+ "rosetta-stone-core",
+ "rosetta-stone-ir",
  "thiserror 1.0.69",
 ]
 
 [[package]]
-name = "rosetta-mumps"
+name = "rosetta-stone-mumps"
 version = "0.1.0"
 dependencies = [
  "logos",
- "rosetta-core",
- "rosetta-ir",
+ "rosetta-stone-core",
+ "rosetta-stone-ir",
  "serde",
  "thiserror 1.0.69",
 ]
 
 [[package]]
-name = "rosetta-ops5"
+name = "rosetta-stone-ops5"
 version = "0.1.0"
 dependencies = [
  "logos",
- "rosetta-core",
- "rosetta-ir",
+ "rosetta-stone-core",
+ "rosetta-stone-ir",
  "thiserror 1.0.69",
 ]
 
 [[package]]
-name = "rosetta-pascal"
+name = "rosetta-stone-pascal"
 version = "0.1.0"
 dependencies = [
  "logos",
- "rosetta-core",
- "rosetta-ir",
+ "rosetta-stone-core",
+ "rosetta-stone-ir",
  "serde",
  "thiserror 1.0.69",
 ]
 
 [[package]]
-name = "rosetta-planner"
+name = "rosetta-stone-planner"
 version = "0.1.0"
 dependencies = [
  "logos",
- "rosetta-core",
- "rosetta-ir",
+ "rosetta-stone-core",
+ "rosetta-stone-ir",
  "thiserror 1.0.69",
 ]
 
 [[package]]
-name = "rosetta-pli"
+name = "rosetta-stone-pli"
 version = "0.1.0"
 dependencies = [
  "logos",
- "rosetta-core",
- "rosetta-ir",
+ "rosetta-stone-core",
+ "rosetta-stone-ir",
  "serde",
  "thiserror 1.0.69",
 ]
 
 [[package]]
-name = "rosetta-prolog"
+name = "rosetta-stone-prolog"
 version = "0.1.0"
 dependencies = [
  "logos",
- "rosetta-core",
- "rosetta-ir",
+ "rosetta-stone-core",
+ "rosetta-stone-ir",
  "thiserror 1.0.69",
 ]
 
 [[package]]
-name = "rosetta-quickbasic"
+name = "rosetta-stone-quickbasic"
 version = "0.1.0"
 dependencies = [
- "rosetta-core",
- "rosetta-ir",
+ "rosetta-stone-core",
+ "rosetta-stone-ir",
  "thiserror 1.0.69",
 ]
 
 [[package]]
-name = "rosetta-rexx"
+name = "rosetta-stone-rexx"
 version = "0.1.0"
 dependencies = [
  "logos",
- "rosetta-core",
- "rosetta-ir",
+ "rosetta-stone-core",
+ "rosetta-stone-ir",
  "serde",
  "thiserror 1.0.69",
 ]
 
 [[package]]
-name = "rosetta-rpg"
+name = "rosetta-stone-rpg"
 version = "0.1.0"
 dependencies = [
  "logos",
- "rosetta-core",
- "rosetta-ir",
+ "rosetta-stone-core",
+ "rosetta-stone-ir",
  "serde",
  "thiserror 1.0.69",
 ]
 
 [[package]]
-name = "rosetta-simula"
+name = "rosetta-stone-simula"
 version = "0.1.0"
 dependencies = [
  "logos",
- "rosetta-core",
- "rosetta-ir",
+ "rosetta-stone-core",
+ "rosetta-stone-ir",
  "serde",
  "thiserror 1.0.69",
 ]
 
 [[package]]
-name = "rosetta-smalltalk"
+name = "rosetta-stone-smalltalk"
 version = "0.1.0"
 dependencies = [
  "anyhow",
  "logos",
- "rosetta-core",
- "rosetta-ir",
+ "rosetta-stone-core",
+ "rosetta-stone-ir",
  "thiserror 1.0.69",
 ]
 
 [[package]]
-name = "rosetta-snobol"
+name = "rosetta-stone-snobol"
 version = "0.1.0"
 dependencies = [
  "logos",
- "rosetta-core",
- "rosetta-ir",
+ "rosetta-stone-core",
+ "rosetta-stone-ir",
  "serde",
  "thiserror 1.0.69",
 ]
 
 [[package]]
-name = "rosetta-validator"
+name = "rosetta-stone-validator"
 version = "0.1.0"
 dependencies = [
  "approx",
- "rosetta-core",
+ "rosetta-stone-core",
  "thiserror 1.0.69",
 ]
 
 [[package]]
-name = "rosetta-wasm"
+name = "rosetta-stone-wasm"
 version = "0.1.0"
 dependencies = [
  "anyhow",
- "rosetta-core",
- "rosetta-ir",
+ "rosetta-stone-core",
+ "rosetta-stone-ir",
  "thiserror 1.0.69",
 ]
 

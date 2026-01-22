@@ -1,5 +1,5 @@
 [package]
-name = "rosetta-core"
+name = "rosetta-stone-core"
 version.workspace = true
 edition.workspace = true
 authors.workspace = true

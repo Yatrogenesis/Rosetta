@@ -19,8 +19,8 @@
 //! - No reserved words (context-sensitive)
 
 use logos::Logos;
-use rosetta_core::{Frontend, SourceLanguage, SourceFile, ParseError, RosettaIr};
-use rosetta_ir::IrBuilder;
+use rosetta_stone_core::{Frontend, SourceLanguage, SourceFile, ParseError, RosettaIr};
+use rosetta_stone_ir::IrBuilder;
 use serde::{Deserialize, Serialize};
 
 /// REXX token types
@@ -607,7 +607,7 @@ impl Frontend for RexxParser {
         }
 
         let builder = IrBuilder::with_language("rexx_module", SourceLanguage::Rexx);
-        Ok(builder.build().into_rosetta_ir())
+        Ok(builder.build().into_rosetta_stone_ir())
     }
 }
 

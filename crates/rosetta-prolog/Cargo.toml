@@ -1,5 +1,5 @@
 [package]
-name = "rosetta-prolog"
+name = "rosetta-stone-prolog"
 version.workspace = true
 edition.workspace = true
 authors.workspace = true
@@ -10,7 +10,7 @@ keywords = ["prolog", "logic", "ai", "transpiler"]
 categories = ["development-tools", "parsing", "compilers"]
 
 [dependencies]
-rosetta-core = { workspace = true }
-rosetta-ir = { workspace = true }
+rosetta-stone-core = { workspace = true }
+rosetta-stone-ir = { workspace = true }
 logos = { workspace = true }
 thiserror = { workspace = true }

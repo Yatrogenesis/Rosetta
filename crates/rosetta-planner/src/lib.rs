@@ -11,8 +11,8 @@
 //! and backtracking semantics using Rust iterators and closures.
 
 use logos::Logos;
-use rosetta_core::{Frontend, SourceFile, ParseError, RosettaIr};
-use rosetta_ir::{IrModule, IrBuilder, IrFunction, IrType, IrExpr};
+use rosetta_stone_core::{Frontend, SourceFile, ParseError, RosettaIr};
+use rosetta_stone_ir::{IrModule, IrBuilder, IrFunction, IrType, IrExpr};
 use std::collections::HashMap;
 
 /// PLANNER tokens
@@ -579,7 +579,7 @@ impl Frontend for PlannerFrontend {
         let ast = parser.parse()?;
         let mut converter = PlannerToIr::new();
         let module = converter.convert(&ast)?;
-        Ok(module.into_rosetta_ir())
+        Ok(module.into_rosetta_stone_ir())
     }
 }
 

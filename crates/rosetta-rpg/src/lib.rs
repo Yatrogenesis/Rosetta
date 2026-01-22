@@ -31,8 +31,8 @@
 //! | P | Procedure |
 
 use logos::Logos;
-use rosetta_core::{Frontend, SourceLanguage, SourceFile, ParseError, RosettaIr};
-use rosetta_ir::IrBuilder;
+use rosetta_stone_core::{Frontend, SourceLanguage, SourceFile, ParseError, RosettaIr};
+use rosetta_stone_ir::IrBuilder;
 use serde::{Deserialize, Serialize};
 
 /// RPG token types
@@ -844,7 +844,7 @@ impl Frontend for RpgParser {
         }
 
         let builder = IrBuilder::with_language("rpg_module", SourceLanguage::Rpg);
-        Ok(builder.build().into_rosetta_ir())
+        Ok(builder.build().into_rosetta_stone_ir())
     }
 }
 

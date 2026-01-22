@@ -3,7 +3,7 @@
 //! Parses COBOL source code into Rosetta IR.
 //! Supports COBOL-85 and later versions.
 
-use rosetta_core::{Frontend, SourceFile, RosettaIr, ParseError};
+use rosetta_stone_core::{Frontend, SourceFile, RosettaIr, ParseError};
 
 pub struct CobolParser;
 

@@ -1,5 +1,5 @@
 [package]
-name = "rosetta-validator"
+name = "rosetta-stone-validator"
 version.workspace = true
 edition.workspace = true
 authors.workspace = true
@@ -10,6 +10,6 @@ categories.workspace = true
 description = "Numerical equivalence validation for Rosetta transpiler"
 
 [dependencies]
-rosetta-core = { workspace = true }
+rosetta-stone-core = { workspace = true }
 thiserror = { workspace = true }
 approx = { workspace = true }

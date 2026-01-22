@@ -1,0 +1,14 @@
+C:\Users\pakom\Rosetta\target\debug\deps\ss58_registry-520202745699c024.d: C:\Users\pakom\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ss58-registry-1.51.0\src\lib.rs C:\Users\pakom\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ss58-registry-1.51.0\src\address_format.rs C:\Users\pakom\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ss58-registry-1.51.0\src\error.rs C:\Users\pakom\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ss58-registry-1.51.0\src\registry.rs C:\Users\pakom\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ss58-registry-1.51.0\src\token.rs C:\Users\pakom\Rosetta\target\debug\build\ss58-registry-1f535a86cd79d5af\out/registry_gen.rs
+
+C:\Users\pakom\Rosetta\target\debug\deps\libss58_registry-520202745699c024.rlib: C:\Users\pakom\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ss58-registry-1.51.0\src\lib.rs C:\Users\pakom\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ss58-registry-1.51.0\src\address_format.rs C:\Users\pakom\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ss58-registry-1.51.0\src\error.rs C:\Users\pakom\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ss58-registry-1.51.0\src\registry.rs C:\Users\pakom\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ss58-registry-1.51.0\src\token.rs C:\Users\pakom\Rosetta\target\debug\build\ss58-registry-1f535a86cd79d5af\out/registry_gen.rs
+
+C:\Users\pakom\Rosetta\target\debug\deps\libss58_registry-520202745699c024.rmeta: C:\Users\pakom\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ss58-registry-1.51.0\src\lib.rs C:\Users\pakom\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ss58-registry-1.51.0\src\address_format.rs C:\Users\pakom\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ss58-registry-1.51.0\src\error.rs C:\Users\pakom\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ss58-registry-1.51.0\src\registry.rs C:\Users\pakom\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ss58-registry-1.51.0\src\token.rs C:\Users\pakom\Rosetta\target\debug\build\ss58-registry-1f535a86cd79d5af\out/registry_gen.rs
+
+C:\Users\pakom\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ss58-registry-1.51.0\src\lib.rs:
+C:\Users\pakom\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ss58-registry-1.51.0\src\address_format.rs:
+C:\Users\pakom\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ss58-registry-1.51.0\src\error.rs:
+C:\Users\pakom\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ss58-registry-1.51.0\src\registry.rs:
+C:\Users\pakom\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\ss58-registry-1.51.0\src\token.rs:
+C:\Users\pakom\Rosetta\target\debug\build\ss58-registry-1f535a86cd79d5af\out/registry_gen.rs:
+
+# env-dep:OUT_DIR=C:\\Users\\pakom\\Rosetta\\target\\debug\\build\\ss58-registry-1f535a86cd79d5af\\out

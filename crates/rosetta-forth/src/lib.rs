@@ -13,8 +13,8 @@
 //! - Comments (\ line, ( ... ))
 
 use logos::Logos;
-use rosetta_core::{IrType, IrExpr, SourceLanguage, Result, TranspileError, SourceLocation};
-use rosetta_ir::{IrModule, IrFunction, IrBuilder, IrParam, Visibility};
+use rosetta_stone_core::{IrType, IrExpr, SourceLanguage, Result, TranspileError, SourceLocation};
+use rosetta_stone_ir::{IrModule, IrFunction, IrBuilder, IrParam, Visibility};
 
 /// Forth tokens
 #[derive(Logos, Debug, Clone, PartialEq)]

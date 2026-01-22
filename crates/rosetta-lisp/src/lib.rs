@@ -2,7 +2,7 @@
 //!
 //! Parses Common Lisp and Scheme into Rosetta IR.
 
-use rosetta_core::{Frontend, SourceFile, RosettaIr, ParseError};
+use rosetta_stone_core::{Frontend, SourceFile, RosettaIr, ParseError};
 
 pub struct LispParser {
     dialect: LispDialect,

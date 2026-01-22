@@ -16,8 +16,8 @@
 //! - Powerful I/O with stream and record I/O
 
 use logos::Logos;
-use rosetta_core::{Frontend, SourceLanguage, SourceFile, ParseError, RosettaIr};
-use rosetta_ir::IrBuilder;
+use rosetta_stone_core::{Frontend, SourceLanguage, SourceFile, ParseError, RosettaIr};
+use rosetta_stone_ir::IrBuilder;
 use serde::{Deserialize, Serialize};
 
 /// PL/I token types
@@ -632,7 +632,7 @@ impl Frontend for PliParser {
         }
 
         let builder = IrBuilder::with_language("pli_module", SourceLanguage::Pli);
-        Ok(builder.build().into_rosetta_ir())
+        Ok(builder.build().into_rosetta_stone_ir())
     }
 }
 

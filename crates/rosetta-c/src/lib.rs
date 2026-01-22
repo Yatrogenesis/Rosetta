@@ -8,8 +8,8 @@
 //! - Proper type mappings
 //! - Array handling with bounds checking options
 
-use rosetta_core::{IrType, IrExpr, Result};
-use rosetta_ir::{IrModule, IrFunction, IrTypeDef, Visibility};
+use rosetta_stone_core::{IrType, IrExpr, Result};
+use rosetta_stone_ir::{IrModule, IrFunction, IrTypeDef, Visibility};
 use std::fmt::Write;
 
 /// C Standard to target
@@ -380,8 +380,8 @@ pub struct COutput {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use rosetta_core::SourceLanguage;
-    use rosetta_ir::IrBuilder;
+    use rosetta_stone_core::SourceLanguage;
+    use rosetta_stone_ir::IrBuilder;
 
     #[test]
     fn test_basic_generation() {

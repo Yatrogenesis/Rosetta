@@ -14,8 +14,8 @@
 //! - Coroutines (PROCESS, TRANSFER, NEWPROCESS)
 
 use logos::Logos;
-use rosetta_core::{IrType, IrExpr, SourceLanguage, Result, TranspileError, SourceLocation};
-use rosetta_ir::{IrModule, IrFunction, IrBuilder, IrParam, Visibility, IrTypeDef, IrGlobal};
+use rosetta_stone_core::{IrType, IrExpr, SourceLanguage, Result, TranspileError, SourceLocation};
+use rosetta_stone_ir::{IrModule, IrFunction, IrBuilder, IrParam, Visibility, IrTypeDef, IrGlobal};
 
 /// Modula-2 tokens
 #[derive(Logos, Debug, Clone, PartialEq)]

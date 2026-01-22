@@ -10,8 +10,8 @@
 //! - Type mapping documentation
 //! - Function signature comparison
 
-use rosetta_core::{IrType, Result, SourceLanguage};
-use rosetta_ir::{IrModule, IrFunction, IrTypeDef, Visibility};
+use rosetta_stone_core::{IrType, Result, SourceLanguage};
+use rosetta_stone_ir::{IrModule, IrFunction, IrTypeDef, Visibility};
 use std::fmt::Write;
 
 /// Documentation output format
@@ -494,7 +494,7 @@ impl DocGenerator {
         };
 
         serde_json::to_string_pretty(&doc)
-            .map_err(|e| rosetta_core::TranspileError::SemanticError(format!("JSON error: {}", e)))
+            .map_err(|e| rosetta_stone_core::TranspileError::SemanticError(format!("JSON error: {}", e)))
     }
 
     fn type_to_string(&self, ty: &IrType) -> String {
@@ -574,7 +574,7 @@ struct TypeDoc {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use rosetta_ir::IrBuilder;
+    use rosetta_stone_ir::IrBuilder;
 
     #[test]
     fn test_markdown_generation() {

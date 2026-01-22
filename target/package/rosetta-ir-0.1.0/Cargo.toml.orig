@@ -1,0 +1,15 @@
+[package]
+name = "rosetta-ir"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+keywords.workspace = true
+categories.workspace = true
+description = "Rosetta Intermediate Representation for cross-language transpilation"
+
+[dependencies]
+rosetta-core = { workspace = true }
+serde = { workspace = true }
+thiserror = { workspace = true }

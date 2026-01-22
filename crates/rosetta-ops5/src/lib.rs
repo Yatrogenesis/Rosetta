@@ -11,8 +11,8 @@
 //! as an efficient pattern-matching engine.
 
 use logos::Logos;
-use rosetta_core::{Frontend, SourceFile, ParseError, RosettaIr};
-use rosetta_ir::{IrModule, IrBuilder, IrType, IrExpr};
+use rosetta_stone_core::{Frontend, SourceFile, ParseError, RosettaIr};
+use rosetta_stone_ir::{IrModule, IrBuilder, IrType, IrExpr};
 use std::collections::HashMap;
 
 /// OPS5 tokens
@@ -768,7 +768,7 @@ impl Frontend for Ops5Frontend {
         let ast = parser.parse()?;
         let mut converter = Ops5ToIr::new();
         let module = converter.convert(&ast)?;
-        Ok(module.into_rosetta_ir())
+        Ok(module.into_rosetta_stone_ir())
     }
 }
 

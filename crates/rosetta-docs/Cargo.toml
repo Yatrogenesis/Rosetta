@@ -1,5 +1,5 @@
 [package]
-name = "rosetta-docs"
+name = "rosetta-stone-docs"
 version.workspace = true
 edition.workspace = true
 authors.workspace = true
@@ -10,8 +10,8 @@ keywords = ["documentation", "codegen", "transpiler", "markdown"]
 categories = ["development-tools", "documentation"]
 
 [dependencies]
-rosetta-core.workspace = true
-rosetta-ir.workspace = true
+rosetta-stone-core.workspace = true
+rosetta-stone-ir.workspace = true
 thiserror.workspace = true
 anyhow.workspace = true
 serde.workspace = true

@@ -1,5 +1,5 @@
 [package]
-name = "rosetta-gui"
+name = "rosetta-stone-gui"
 version.workspace = true
 edition.workspace = true
 authors.workspace = true
@@ -10,22 +10,22 @@ keywords = ["gui", "transpiler", "egui"]
 categories = ["development-tools", "gui"]
 
 [[bin]]
-name = "rosetta-gui"
+name = "rosetta-stone-gui"
 path = "src/main.rs"
 
 [dependencies]
-rosetta-core = { workspace = true }
-rosetta-ir = { workspace = true }
-rosetta-codegen = { workspace = true }
-rosetta-fortran = { workspace = true }
-rosetta-cobol = { workspace = true }
-rosetta-lisp = { workspace = true }
-rosetta-quickbasic = { workspace = true }
-rosetta-ml = { workspace = true }
-rosetta-planner = { workspace = true }
-rosetta-ops5 = { workspace = true }
-rosetta-krl = { workspace = true }
-rosetta-prolog = { workspace = true }
+rosetta-stone-core = { workspace = true }
+rosetta-stone-ir = { workspace = true }
+rosetta-stone-codegen = { workspace = true }
+rosetta-stone-fortran = { workspace = true }
+rosetta-stone-cobol = { workspace = true }
+rosetta-stone-lisp = { workspace = true }
+rosetta-stone-quickbasic = { workspace = true }
+rosetta-stone-ml = { workspace = true }
+rosetta-stone-planner = { workspace = true }
+rosetta-stone-ops5 = { workspace = true }
+rosetta-stone-krl = { workspace = true }
+rosetta-stone-prolog = { workspace = true }
 eframe = { workspace = true }
 egui = { workspace = true }
 syntect = { workspace = true }

@@ -13,8 +13,8 @@
 //! This crate transpiles KRL to Rust using structs with trait-based inheritance.
 
 use logos::Logos;
-use rosetta_core::{Frontend, SourceFile, ParseError, RosettaIr};
-use rosetta_ir::{IrModule, IrBuilder, IrType, IrExpr};
+use rosetta_stone_core::{Frontend, SourceFile, ParseError, RosettaIr};
+use rosetta_stone_ir::{IrModule, IrBuilder, IrType, IrExpr};
 use std::collections::HashMap;
 
 /// KRL tokens
@@ -1036,7 +1036,7 @@ impl Frontend for KrlFrontend {
         let ast = parser.parse()?;
         let mut converter = KrlToIr::new();
         let module = converter.convert(&ast)?;
-        Ok(module.into_rosetta_ir())
+        Ok(module.into_rosetta_stone_ir())
     }
 }
 

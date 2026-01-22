@@ -1,5 +1,5 @@
 [package]
-name = "rosetta-cobol"
+name = "rosetta-stone-cobol"
 version.workspace = true
 edition.workspace = true
 authors.workspace = true
@@ -10,6 +10,6 @@ categories.workspace = true
 description = "COBOL frontend for Rosetta transpiler"
 
 [dependencies]
-rosetta-core = { workspace = true }
-rosetta-ir = { workspace = true }
+rosetta-stone-core = { workspace = true }
+rosetta-stone-ir = { workspace = true }
 thiserror = { workspace = true }

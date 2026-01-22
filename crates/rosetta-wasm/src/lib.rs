@@ -8,8 +8,8 @@
 //! - Can be assembled to WASM with wat2wasm
 //! - Supports i32, i64, f32, f64 value types
 
-use rosetta_core::{IrType, IrExpr, Result};
-use rosetta_ir::{IrModule, IrFunction, Visibility};
+use rosetta_stone_core::{IrType, IrExpr, Result};
+use rosetta_stone_ir::{IrModule, IrFunction, Visibility};
 use std::fmt::Write;
 use std::collections::HashMap;
 
@@ -333,8 +333,8 @@ impl WasmCodegen {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use rosetta_core::SourceLanguage;
-    use rosetta_ir::IrBuilder;
+    use rosetta_stone_core::SourceLanguage;
+    use rosetta_stone_ir::IrBuilder;
 
     #[test]
     fn test_basic_generation() {

@@ -21,8 +21,8 @@
 //! - COROUTINES: Detach/Resume for simulation
 
 use logos::Logos;
-use rosetta_core::{Frontend, SourceLanguage, SourceFile, ParseError, RosettaIr};
-use rosetta_ir::IrBuilder;
+use rosetta_stone_core::{Frontend, SourceLanguage, SourceFile, ParseError, RosettaIr};
+use rosetta_stone_ir::IrBuilder;
 use serde::{Deserialize, Serialize};
 
 /// Simula 67 token types
@@ -557,7 +557,7 @@ impl Frontend for SimulaParser {
         }
 
         let builder = IrBuilder::with_language("simula_module", SourceLanguage::Simula);
-        Ok(builder.build().into_rosetta_ir())
+        Ok(builder.build().into_rosetta_stone_ir())
     }
 }
 

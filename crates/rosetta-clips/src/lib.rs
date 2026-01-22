@@ -16,8 +16,8 @@
 //! - Salience for rule priority
 
 use logos::Logos;
-use rosetta_core::{Frontend, SourceLanguage, SourceFile, ParseError, RosettaIr};
-use rosetta_ir::IrBuilder;
+use rosetta_stone_core::{Frontend, SourceLanguage, SourceFile, ParseError, RosettaIr};
+use rosetta_stone_ir::IrBuilder;
 use serde::{Deserialize, Serialize};
 
 /// CLIPS token types
@@ -847,7 +847,7 @@ impl Frontend for ClipsParser {
         }
 
         let builder = IrBuilder::with_language("clips_module", SourceLanguage::Clips);
-        Ok(builder.build().into_rosetta_ir())
+        Ok(builder.build().into_rosetta_stone_ir())
     }
 }
 

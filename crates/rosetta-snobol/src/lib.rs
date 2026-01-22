@@ -15,8 +15,8 @@
 //! - Success/failure as control flow mechanism
 
 use logos::Logos;
-use rosetta_core::{Frontend, SourceLanguage, SourceFile, ParseError, RosettaIr};
-use rosetta_ir::IrBuilder;
+use rosetta_stone_core::{Frontend, SourceLanguage, SourceFile, ParseError, RosettaIr};
+use rosetta_stone_ir::IrBuilder;
 use serde::{Deserialize, Serialize};
 
 /// SNOBOL4 token types
@@ -383,7 +383,7 @@ impl Frontend for SnobolParser {
         }
 
         let builder = IrBuilder::with_language("snobol_module", SourceLanguage::Snobol);
-        Ok(builder.build().into_rosetta_ir())
+        Ok(builder.build().into_rosetta_stone_ir())
     }
 }
 

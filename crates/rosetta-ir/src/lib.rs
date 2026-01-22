@@ -12,12 +12,12 @@
 //! 3. **Memory Model**: Tracks ownership, borrowing, mutability
 //! 4. **Optimizable**: Amenable to transformations and analysis
 
-pub use rosetta_core::{
+pub use rosetta_stone_core::{
     RosettaIr, IrNode, IrType, IrExpr, IrStmt, IrLiteral, BinOp, UnaryOp,
     SourceSpan, SourceLocation, SourceLanguage,
 };
 
-use rosetta_core::SourceLanguage as Lang;
+use rosetta_stone_core::SourceLanguage as Lang;
 use serde::{Deserialize, Serialize};
 
 /// Extended IR module with full program structure
@@ -64,8 +64,8 @@ impl Default for IrModule {
 
 impl IrModule {
     /// Convert to basic RosettaIr (for Frontend trait compatibility)
-    pub fn into_rosetta_ir(self) -> rosetta_core::RosettaIr {
-        use rosetta_core::IrNode;
+    pub fn into_rosetta_stone_ir(self) -> rosetta_stone_core::RosettaIr {
+        use rosetta_stone_core::IrNode;
 
         let mut nodes = Vec::new();
 
@@ -99,7 +99,7 @@ impl IrModule {
             nodes.push(IrNode::Expr(stmt));
         }
 
-        rosetta_core::RosettaIr {
+        rosetta_stone_core::RosettaIr {
             name: self.name,
             nodes,
         }
@@ -365,7 +365,7 @@ impl IrBuilder {
 
 /// Trait for converting language-specific ASTs to IR
 pub trait ToIr<T> {
-    fn to_ir(&self, ast: &T) -> Result<IrModule, rosetta_core::ParseError>;
+    fn to_ir(&self, ast: &T) -> Result<IrModule, rosetta_stone_core::ParseError>;
 }
 
 #[cfg(test)]
