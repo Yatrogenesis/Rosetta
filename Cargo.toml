@@ -62,7 +62,7 @@ edition = "2021"
 authors = ["Francisco Molina-Burgos <fmolina@avermex.com>"]
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/Yatrogenesis/Rosetta"
-keywords = ["transpiler", "fortran", "cobol", "lisp", "rust", "prolog", "planner"]
+keywords = ["transpiler", "legacy", "fortran", "cobol", "compiler"]
 categories = ["development-tools", "parsing", "compilers"]
 
 [workspace.dependencies]
