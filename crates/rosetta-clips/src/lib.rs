@@ -846,7 +846,7 @@ impl Frontend for ClipsParser {
             }
         }
 
-        let mut builder = IrBuilder::with_language("clips_module", SourceLanguage::Clips);
+        let builder = IrBuilder::with_language("clips_module", SourceLanguage::Clips);
         Ok(builder.build().into_rosetta_ir())
     }
 }

@@ -2,8 +2,12 @@
 name = "rosetta-planner"
 version.workspace = true
 edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
 description = "PLANNER language frontend for Rosetta transpiler"
 keywords = ["planner", "ai", "symbolic", "transpiler"]
+categories = ["development-tools", "parsing", "compilers"]
 
 [dependencies]
 rosetta-core = { workspace = true }

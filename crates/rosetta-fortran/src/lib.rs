@@ -503,6 +503,7 @@ impl TokenParser {
     }
 
     /// Peek at token at offset
+    #[allow(dead_code)]
     fn peek(&self, offset: usize) -> Option<&FortranToken> {
         self.tokens.get(self.pos + offset).map(|t| &t.token)
     }
@@ -2330,7 +2331,7 @@ impl FortranToIr {
             }
 
             FortranStmt::Stop(msg) => {
-                let msg = msg.as_ref().map(|s| s.as_str()).unwrap_or("");
+                let _msg = msg.as_ref().map(|s| s.as_str()).unwrap_or("");
                 Ok(Some(IrExpr::Call {
                     func: Box::new(IrExpr::Identifier("std::process::exit".to_string())),
                     args: vec![IrExpr::Int(0)],

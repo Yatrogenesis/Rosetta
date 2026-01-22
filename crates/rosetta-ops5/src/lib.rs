@@ -256,6 +256,7 @@ impl Ops5Parser {
         self.tokens.get(self.position).map(|(t, _)| t)
     }
 
+    #[allow(dead_code)]
     fn peek_text(&self) -> Option<&str> {
         self.tokens.get(self.position).map(|(_, t)| t.as_str())
     }

@@ -108,22 +108,22 @@ tracing-subscriber = "0.3"
 tokio = { version = "1.41", features = ["full"] }
 
 # Internal
-rosetta-core = { path = "crates/rosetta-core" }
-rosetta-ir = { path = "crates/rosetta-ir" }
-rosetta-codegen = { path = "crates/rosetta-codegen" }
-rosetta-fortran = { path = "crates/rosetta-fortran" }
-rosetta-cobol = { path = "crates/rosetta-cobol" }
-rosetta-lisp = { path = "crates/rosetta-lisp" }
-rosetta-quickbasic = { path = "crates/rosetta-quickbasic" }
-rosetta-ml = { path = "crates/rosetta-ml" }
-rosetta-planner = { path = "crates/rosetta-planner" }
-rosetta-ops5 = { path = "crates/rosetta-ops5" }
-rosetta-krl = { path = "crates/rosetta-krl" }
-rosetta-prolog = { path = "crates/rosetta-prolog" }
-rosetta-validator = { path = "crates/rosetta-validator" }
-rosetta-c = { path = "crates/rosetta-c" }
-rosetta-wasm = { path = "crates/rosetta-wasm" }
-rosetta-docs = { path = "crates/rosetta-docs" }
+rosetta-core = { version = "0.1.0", path = "crates/rosetta-core" }
+rosetta-ir = { version = "0.1.0", path = "crates/rosetta-ir" }
+rosetta-codegen = { version = "0.1.0", path = "crates/rosetta-codegen" }
+rosetta-fortran = { version = "0.1.0", path = "crates/rosetta-fortran" }
+rosetta-cobol = { version = "0.1.0", path = "crates/rosetta-cobol" }
+rosetta-lisp = { version = "0.1.0", path = "crates/rosetta-lisp" }
+rosetta-quickbasic = { version = "0.1.0", path = "crates/rosetta-quickbasic" }
+rosetta-ml = { version = "0.1.0", path = "crates/rosetta-ml" }
+rosetta-planner = { version = "0.1.0", path = "crates/rosetta-planner" }
+rosetta-ops5 = { version = "0.1.0", path = "crates/rosetta-ops5" }
+rosetta-krl = { version = "0.1.0", path = "crates/rosetta-krl" }
+rosetta-prolog = { version = "0.1.0", path = "crates/rosetta-prolog" }
+rosetta-validator = { version = "0.1.0", path = "crates/rosetta-validator" }
+rosetta-c = { version = "0.1.0", path = "crates/rosetta-c" }
+rosetta-wasm = { version = "0.1.0", path = "crates/rosetta-wasm" }
+rosetta-docs = { version = "0.1.0", path = "crates/rosetta-docs" }
 
 [profile.release]
 opt-level = 3

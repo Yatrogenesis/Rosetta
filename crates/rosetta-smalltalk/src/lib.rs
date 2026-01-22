@@ -286,7 +286,7 @@ impl SmalltalkParser {
     }
 
     fn parse_method(&mut self) -> Result<IrFunction> {
-        let mut name = String::new();
+        let mut name;
         let mut params = Vec::new();
 
         // Parse method selector
@@ -606,7 +606,7 @@ impl SmalltalkParser {
 
         // Represent block as a lambda/closure
         let param_types: Vec<IrType> = params.iter().map(|_| IrType::Any).collect();
-        let block_type = IrType::Fn(param_types, Box::new(IrType::Any));
+        let _block_type = IrType::Fn(param_types, Box::new(IrType::Any));
 
         Ok(IrExpr::Call {
             func: Box::new(IrExpr::Identifier("block".to_string())),

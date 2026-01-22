@@ -2,6 +2,9 @@
 name = "rosetta-wasm"
 version.workspace = true
 edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
 description = "WebAssembly code generation backend for Rosetta transpiler"
 keywords = ["wasm", "webassembly", "codegen", "transpiler", "backend"]
 categories = ["development-tools", "compilers", "wasm"]

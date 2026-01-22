@@ -4,8 +4,10 @@ version.workspace = true
 edition.workspace = true
 authors.workspace = true
 license.workspace = true
+repository.workspace = true
 description = "REXX scripting language frontend for Rosetta transpiler"
 keywords = ["rexx", "ibm", "mainframe", "scripting", "os2"]
+categories = ["development-tools", "parsing", "compilers"]
 
 [dependencies]
 rosetta-core.workspace = true

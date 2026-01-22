@@ -20,9 +20,8 @@
 
 use anyhow::{Context, Result};
 use clap::{Parser, Subcommand};
-use colored::Colorize;
 use console::{style, Emoji};
-use dialoguer::{theme::ColorfulTheme, Confirm, FuzzySelect, Input, MultiSelect};
+use dialoguer::{theme::ColorfulTheme, Confirm, FuzzySelect, Input};
 use indicatif::{MultiProgress, ProgressBar, ProgressStyle};
 use std::path::PathBuf;
 use std::time::Duration;
@@ -427,9 +426,9 @@ fn run_transpile(
     input: &PathBuf,
     output: Option<PathBuf>,
     lang: Option<String>,
-    unsafe_mode: bool,
+    _unsafe_mode: bool,
     preserve_comments: bool,
-    opt_level: u8,
+    _opt_level: u8,
     quiet: bool,
 ) -> Result<()> {
     let language = lang.unwrap_or_else(|| {

@@ -2,6 +2,11 @@
 name = "rosetta-cobol"
 version.workspace = true
 edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+keywords.workspace = true
+categories.workspace = true
 description = "COBOL frontend for Rosetta transpiler"
 
 [dependencies]

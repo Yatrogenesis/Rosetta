@@ -395,7 +395,7 @@ impl Frontend for AlgolParser {
             }
         }
 
-        let mut builder = IrBuilder::with_language("algol_module", SourceLanguage::Algol60);
+        let builder = IrBuilder::with_language("algol_module", SourceLanguage::Algol60);
         Ok(builder.build().into_rosetta_ir())
     }
 }

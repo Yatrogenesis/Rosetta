@@ -2,6 +2,9 @@
 name = "rosetta-forth"
 version.workspace = true
 edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
 description = "Forth language frontend for Rosetta transpiler"
 keywords = ["forth", "stack", "parser", "transpiler", "concatenative"]
 categories = ["development-tools", "parsing", "compilers"]

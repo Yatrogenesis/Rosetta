@@ -2,6 +2,9 @@
 name = "rosetta-c"
 version.workspace = true
 edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
 description = "C code generation backend for Rosetta transpiler"
 keywords = ["c", "codegen", "transpiler", "backend"]
 categories = ["development-tools", "compilers"]

@@ -396,7 +396,7 @@ impl Frontend for AplParser {
             }
         }
 
-        let mut builder = IrBuilder::with_language("apl_module", SourceLanguage::Apl);
+        let builder = IrBuilder::with_language("apl_module", SourceLanguage::Apl);
         Ok(builder.build().into_rosetta_ir())
     }
 }

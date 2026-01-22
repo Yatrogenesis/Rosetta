@@ -2,8 +2,12 @@
 name = "rosetta-prolog"
 version.workspace = true
 edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
 description = "Prolog logic programming frontend for Rosetta transpiler"
 keywords = ["prolog", "logic", "ai", "transpiler"]
+categories = ["development-tools", "parsing", "compilers"]
 
 [dependencies]
 rosetta-core = { workspace = true }

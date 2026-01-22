@@ -9,7 +9,7 @@
 //! - Array handling with bounds checking options
 
 use rosetta_core::{IrType, IrExpr, Result};
-use rosetta_ir::{IrModule, IrFunction, IrTypeDef, Visibility, IrEnumVariant, IrParam};
+use rosetta_ir::{IrModule, IrFunction, IrTypeDef, Visibility};
 use std::fmt::Write;
 
 /// C Standard to target

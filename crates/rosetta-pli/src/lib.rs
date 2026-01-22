@@ -631,7 +631,7 @@ impl Frontend for PliParser {
             }
         }
 
-        let mut builder = IrBuilder::with_language("pli_module", SourceLanguage::Pli);
+        let builder = IrBuilder::with_language("pli_module", SourceLanguage::Pli);
         Ok(builder.build().into_rosetta_ir())
     }
 }

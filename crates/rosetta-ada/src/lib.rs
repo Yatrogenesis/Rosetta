@@ -702,7 +702,7 @@ impl Frontend for AdaParser {
             }
         }
 
-        let mut builder = IrBuilder::with_language("ada_module", SourceLanguage::Ada);
+        let builder = IrBuilder::with_language("ada_module", SourceLanguage::Ada);
 
         // Parse and convert to IR
         // TODO: Full parsing implementation

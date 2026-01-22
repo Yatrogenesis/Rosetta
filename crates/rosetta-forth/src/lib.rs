@@ -332,7 +332,7 @@ impl ForthParser {
     }
 
     fn parse_token(&mut self) -> Result<IrExpr> {
-        let (token, span) = self.tokens[self.pos].clone();
+        let (token, _span) = self.tokens[self.pos].clone();
         self.pos += 1;
 
         match token {

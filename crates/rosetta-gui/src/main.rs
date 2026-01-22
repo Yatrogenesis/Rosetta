@@ -134,8 +134,8 @@ struct RosettaApp {
     /// Font size
     font_size: f32,
     /// Syntax highlighting
-    syntax_set: SyntaxSet,
-    theme_set: ThemeSet,
+    _syntax_set: SyntaxSet,
+    _theme_set: ThemeSet,
     /// Error messages
     errors: Vec<String>,
     /// Show language info panel
@@ -154,8 +154,8 @@ impl Default for RosettaApp {
             auto_transpile: true,
             dark_mode: true,
             font_size: 14.0,
-            syntax_set: SyntaxSet::load_defaults_newlines(),
-            theme_set: ThemeSet::load_defaults(),
+            _syntax_set: SyntaxSet::load_defaults_newlines(),
+            _theme_set: ThemeSet::load_defaults(),
             errors: Vec::new(),
             show_lang_info: false,
         }

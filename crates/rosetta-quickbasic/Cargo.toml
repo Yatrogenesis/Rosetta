@@ -2,6 +2,11 @@
 name = "rosetta-quickbasic"
 version.workspace = true
 edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+keywords.workspace = true
+categories.workspace = true
 description = "QuickBASIC / QBASIC frontend for Rosetta transpiler"
 
 [dependencies]

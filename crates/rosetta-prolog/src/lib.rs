@@ -279,6 +279,7 @@ impl PrologParser {
         self.tokens.get(self.position).map(|(t, _)| t)
     }
 
+    #[allow(dead_code)]
     fn peek_text(&self) -> Option<&str> {
         self.tokens.get(self.position).map(|(_, t)| t.as_str())
     }
@@ -802,7 +803,7 @@ impl PrologToIr {
             self.builder.add_statement(IrExpr::Comment(format!("Clause {}", i + 1)));
 
             // Generate pattern matching
-            let vars = self.collect_variables(args);
+            let _vars = self.collect_variables(args);
             for (j, arg) in args.iter().enumerate() {
                 let pattern = self.convert_term(arg)?;
                 self.builder.add_statement(IrExpr::PatternMatch {

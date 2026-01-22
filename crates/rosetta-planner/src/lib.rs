@@ -406,6 +406,7 @@ impl PlannerParser {
 pub struct PlannerToIr {
     builder: IrBuilder,
     assertions: Vec<IrExpr>,
+    #[allow(dead_code)]
     theorems: HashMap<String, IrFunction>,
 }
 

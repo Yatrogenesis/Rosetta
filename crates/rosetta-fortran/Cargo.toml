@@ -4,6 +4,9 @@ version.workspace = true
 edition.workspace = true
 authors.workspace = true
 license.workspace = true
+repository.workspace = true
+keywords.workspace = true
+categories.workspace = true
 description = "FORTRAN frontend for Rosetta transpiler (F77/F90/F95/F2003/F2008)"
 
 [dependencies]

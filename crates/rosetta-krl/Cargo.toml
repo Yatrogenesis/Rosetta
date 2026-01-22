@@ -2,8 +2,12 @@
 name = "rosetta-krl"
 version.workspace = true
 edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
 description = "KRL (Knowledge Representation Language) frontend for Rosetta transpiler"
 keywords = ["krl", "ai", "knowledge-representation", "transpiler"]
+categories = ["development-tools", "parsing", "compilers"]
 
 [dependencies]
 rosetta-core = { workspace = true }

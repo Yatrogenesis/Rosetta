@@ -66,7 +66,7 @@ impl RustCodegen {
     /// Generate token stream from IR module
     fn generate_tokens(&self, module: &IrModule) -> Result<TokenStream> {
         let module_comment = if self.options.include_comments {
-            let lang = format!("{:?}", module.source_lang);
+            let _lang = format!("{:?}", module.source_lang);
             quote! {
                 //! Transpiled from #lang by Rosetta
                 //! Original file: #module.metadata.source_file
@@ -291,6 +291,7 @@ impl RustCodegen {
     }
 
     /// Convert IR node to tokens
+    #[allow(dead_code)]
     fn node_to_tokens(&self, _node: &rosetta_core::IrNode) -> Result<TokenStream> {
         // Placeholder - full implementation would handle all node types
         Ok(quote! {})
@@ -520,13 +521,14 @@ impl RustCodegen {
             }
 
             // === Comments ===
-            IrExpr::Comment(text) => {
-                Ok(quote! { /* #text */ })
+            IrExpr::Comment(_text) => {
+                Ok(quote! { /* comment */ })
             }
         }
     }
 
     /// Convert literal to tokens
+    #[allow(dead_code)]
     fn literal_to_tokens(&self, lit: &IrLiteral) -> Result<TokenStream> {
         match lit {
             IrLiteral::Int(i) => Ok(quote! { #i }),

@@ -382,7 +382,7 @@ impl Frontend for SnobolParser {
             }
         }
 
-        let mut builder = IrBuilder::with_language("snobol_module", SourceLanguage::Snobol);
+        let builder = IrBuilder::with_language("snobol_module", SourceLanguage::Snobol);
         Ok(builder.build().into_rosetta_ir())
     }
 }

@@ -2,8 +2,12 @@
 name = "rosetta-gui"
 version.workspace = true
 edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
 description = "GUI for Rosetta legacy language transpiler"
 keywords = ["gui", "transpiler", "egui"]
+categories = ["development-tools", "gui"]
 
 [[bin]]
 name = "rosetta-gui"
@@ -18,10 +22,10 @@ rosetta-cobol = { workspace = true }
 rosetta-lisp = { workspace = true }
 rosetta-quickbasic = { workspace = true }
 rosetta-ml = { workspace = true }
-rosetta-planner = { path = "../rosetta-planner" }
-rosetta-ops5 = { path = "../rosetta-ops5" }
-rosetta-krl = { path = "../rosetta-krl" }
-rosetta-prolog = { path = "../rosetta-prolog" }
+rosetta-planner = { workspace = true }
+rosetta-ops5 = { workspace = true }
+rosetta-krl = { workspace = true }
+rosetta-prolog = { workspace = true }
 eframe = { workspace = true }
 egui = { workspace = true }
 syntect = { workspace = true }

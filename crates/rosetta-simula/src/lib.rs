@@ -556,7 +556,7 @@ impl Frontend for SimulaParser {
             }
         }
 
-        let mut builder = IrBuilder::with_language("simula_module", SourceLanguage::Simula);
+        let builder = IrBuilder::with_language("simula_module", SourceLanguage::Simula);
         Ok(builder.build().into_rosetta_ir())
     }
 }

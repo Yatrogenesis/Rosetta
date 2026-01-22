@@ -338,7 +338,7 @@ impl Modula2Parser {
         Ok(builder.build())
     }
 
-    fn parse_module_header(&mut self, builder: &mut IrBuilder) -> Result<()> {
+    fn parse_module_header(&mut self, _builder: &mut IrBuilder) -> Result<()> {
         // Skip DEFINITION/IMPLEMENTATION if present
         if matches!(self.tokens.get(self.pos), Some((Modula2Token::Definition, _)) | Some((Modula2Token::Implementation, _))) {
             self.pos += 1;
@@ -362,12 +362,12 @@ impl Modula2Parser {
         Ok(())
     }
 
-    fn parse_const_decl(&mut self, builder: &mut IrBuilder) -> Result<()> {
+    fn parse_const_decl(&mut self, _builder: &mut IrBuilder) -> Result<()> {
         self.pos += 1; // Skip CONST
 
         while self.pos < self.tokens.len() {
             if let Some((Modula2Token::Identifier(name), _)) = self.tokens.get(self.pos) {
-                let const_name = name.clone();
+                let _const_name = name.clone();
                 self.pos += 1;
 
                 // Skip = sign
@@ -375,7 +375,7 @@ impl Modula2Parser {
                     self.pos += 1;
                 }
 
-                let value = self.parse_expression()?;
+                let _value = self.parse_expression()?;
 
                 // Skip semicolon
                 if matches!(self.tokens.get(self.pos), Some((Modula2Token::Semicolon, _))) {

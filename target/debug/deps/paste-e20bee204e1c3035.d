@@ -1,0 +1,8 @@
+C:\Users\pakom\Rosetta\target\debug\deps\paste-e20bee204e1c3035.d: C:\Users\pakom\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\paste-1.0.15\src\lib.rs C:\Users\pakom\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\paste-1.0.15\src\attr.rs C:\Users\pakom\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\paste-1.0.15\src\error.rs C:\Users\pakom\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\paste-1.0.15\src\segment.rs
+
+C:\Users\pakom\Rosetta\target\debug\deps\paste-e20bee204e1c3035.dll: C:\Users\pakom\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\paste-1.0.15\src\lib.rs C:\Users\pakom\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\paste-1.0.15\src\attr.rs C:\Users\pakom\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\paste-1.0.15\src\error.rs C:\Users\pakom\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\paste-1.0.15\src\segment.rs
+
+C:\Users\pakom\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\paste-1.0.15\src\lib.rs:
+C:\Users\pakom\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\paste-1.0.15\src\attr.rs:
+C:\Users\pakom\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\paste-1.0.15\src\error.rs:
+C:\Users\pakom\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\paste-1.0.15\src\segment.rs:

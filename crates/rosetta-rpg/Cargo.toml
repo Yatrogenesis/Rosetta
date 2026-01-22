@@ -4,8 +4,10 @@ version.workspace = true
 edition.workspace = true
 authors.workspace = true
 license.workspace = true
+repository.workspace = true
 description = "RPG (Report Program Generator) frontend for Rosetta transpiler"
 keywords = ["rpg", "ibm", "as400", "iseries", "mainframe"]
+categories = ["development-tools", "parsing", "compilers"]
 
 [dependencies]
 rosetta-core.workspace = true

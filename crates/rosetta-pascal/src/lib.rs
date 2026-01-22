@@ -571,7 +571,7 @@ impl Frontend for PascalParser {
             }
         }
 
-        let mut builder = IrBuilder::with_language("pascal_module", SourceLanguage::Pascal);
+        let builder = IrBuilder::with_language("pascal_module", SourceLanguage::Pascal);
         Ok(builder.build().into_rosetta_ir())
     }
 }
