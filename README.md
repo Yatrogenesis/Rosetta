@@ -11,6 +11,13 @@
 
 Rosetta enables scientists using legacy languages to migrate their code to modern, safe, high-performance Rust while maintaining **numerical equivalence**.
 
+> **Project status: paused, pending rework (2026-10).**
+> Rosetta is an early scaffold, not a finished transpiler. No frontend has been
+> validated for numerical equivalence against the original language, and the
+> equivalence claims below are goals, not results. The status column states what
+> the code does today: frontends marked "Not implemented" return an error, and
+> languages marked "Planned" have no frontend yet. Do not use it for research results.
+
 ## 🚀 Quick Start
 
 ```bash
@@ -27,44 +34,44 @@ rosetta transpile program.f90 -o program.rs
 ## ✨ Features
 
 - **Interactive Wizard** - Guided transpilation with fuzzy search
-- **29 Legacy Languages** - FORTRAN, COBOL, LISP, BASIC, ML, and more
+- **Goal: many legacy languages** - see the per-language status below (most are not implemented yet)
 - **Batch Processing** - Transpile entire directories with progress bars
-- **Numerical Validation** - Verify output equivalence automatically
+- **Numerical Validation** - experimental checker; no reference benchmark suite yet
 - **Shell Completions** - For Bash, Zsh, Fish, PowerShell
 
 ## 📚 Supported Languages
 
 | Era | Language | Extensions | Status |
 |-----|----------|------------|--------|
-| 1957 | FORTRAN II | `.f`, `.for` | ✅ Ready |
-| 1966 | FORTRAN 66 | `.f66` | ✅ Ready |
-| 1977 | FORTRAN 77 | `.f77` | ✅ Ready |
-| 1990 | Fortran 90/95 | `.f90`, `.f95` | ✅ Ready |
-| 2003 | Fortran 2003/08/18 | `.f03`, `.f08`, `.f18` | ✅ Ready |
-| 1959 | COBOL | `.cob`, `.cbl` | ✅ Ready |
-| 1958 | LISP | `.lisp`, `.cl` | ✅ Ready |
-| 1975 | Scheme | `.scm`, `.ss` | ✅ Ready |
-| 1984 | Common Lisp | `.lisp`, `.cl` | ✅ Ready |
-| 1991 | Clojure | `.clj`, `.cljs` | ✅ Ready |
-| 1964 | BASIC | `.bas` | ✅ Ready |
-| 1985 | QuickBASIC | `.bas`, `.bi` | ✅ Ready |
-| 1991 | Visual Basic | `.vb`, `.frm` | ✅ Ready |
-| 1963 | ALGOL 60/68 | `.alg`, `.a60` | ✅ Ready |
-| 1970 | Pascal | `.pas`, `.pp` | ✅ Ready |
-| 1972 | Modula-2 | `.mod`, `.def` | ✅ Ready |
-| 1988 | Oberon | `.ob`, `.obn` | ✅ Ready |
-| 1979 | Ada 83/95/2012 | `.ada`, `.adb`, `.ads` | ✅ Ready |
-| 1962 | APL | `.apl` | ✅ Ready |
-| 1973 | ML | `.sml`, `.ml` | ✅ Ready |
-| 1983 | Standard ML | `.sml`, `.sig` | ✅ Ready |
-| 1996 | OCaml | `.ml`, `.mli` | ✅ Ready |
-| 1990 | Haskell 98/2010 | `.hs`, `.lhs` | ✅ Ready |
-| 1964 | PL/I | `.pli`, `.pl1` | ✅ Ready |
-| 1978 | MATLAB | `.m` | ✅ Ready |
-| 1988 | Mathematica | `.m`, `.nb`, `.wl` | ✅ Ready |
-| 1987 | Perl | `.pl`, `.pm` | ✅ Ready |
-| 1979 | Icon | `.icn` | ✅ Ready |
-| 1990 | J | `.ijs` | ✅ Ready |
+| 1957 | FORTRAN II | `.f`, `.for` | 📝 Planned (no frontend yet) |
+| 1966 | FORTRAN 66 | `.f66` | 📝 Planned (no frontend yet) |
+| 1977 | FORTRAN 77 | `.f77` | 🧪 Experimental (parser exists; not validated) |
+| 1990 | Fortran 90/95 | `.f90`, `.f95` | 🧪 Experimental (parser exists; not validated) |
+| 2003 | Fortran 2003/08/18 | `.f03`, `.f08`, `.f18` | 🧪 Experimental (parser exists; not validated) |
+| 1959 | COBOL | `.cob`, `.cbl` | ⛔ Not implemented (returns an error) |
+| 1958 | LISP | `.lisp`, `.cl` | 📝 Planned (no frontend yet) |
+| 1975 | Scheme | `.scm`, `.ss` | ⛔ Not implemented (returns an error) |
+| 1984 | Common Lisp | `.lisp`, `.cl` | ⛔ Not implemented (returns an error) |
+| 1991 | Clojure | `.clj`, `.cljs` | 📝 Planned (no frontend yet) |
+| 1964 | BASIC | `.bas` | 📝 Planned (no frontend yet) |
+| 1985 | QuickBASIC | `.bas`, `.bi` | ⛔ Not implemented (returns an error) |
+| 1991 | Visual Basic | `.vb`, `.frm` | 📝 Planned (no frontend yet) |
+| 1963 | ALGOL 60/68 | `.alg`, `.a60` | 🧪 Experimental (parser exists; not validated) |
+| 1970 | Pascal | `.pas`, `.pp` | 🧪 Experimental (parser exists; not validated) |
+| 1972 | Modula-2 | `.mod`, `.def` | 🧪 Experimental (parser exists; not validated) |
+| 1988 | Oberon | `.ob`, `.obn` | 📝 Planned (no frontend yet) |
+| 1979 | Ada 83/95/2012 | `.ada`, `.adb`, `.ads` | 🧪 Experimental (parser exists; not validated) |
+| 1962 | APL | `.apl` | 🧪 Experimental (parser exists; not validated) |
+| 1973 | ML | `.sml`, `.ml` | ⛔ Not implemented (returns an error) |
+| 1983 | Standard ML | `.sml`, `.sig` | ⛔ Not implemented (returns an error) |
+| 1996 | OCaml | `.ml`, `.mli` | ⛔ Not implemented (returns an error) |
+| 1990 | Haskell 98/2010 | `.hs`, `.lhs` | 📝 Planned (no frontend yet) |
+| 1964 | PL/I | `.pli`, `.pl1` | 🧪 Experimental (parser exists; not validated) |
+| 1978 | MATLAB | `.m` | 📝 Planned (no frontend yet) |
+| 1988 | Mathematica | `.m`, `.nb`, `.wl` | 📝 Planned (no frontend yet) |
+| 1987 | Perl | `.pl`, `.pm` | 📝 Planned (no frontend yet) |
+| 1979 | Icon | `.icn` | 📝 Planned (no frontend yet) |
+| 1990 | J | `.ijs` | 📝 Planned (no frontend yet) |
 
 ## 🎯 Interactive Mode
 
