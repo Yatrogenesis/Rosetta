@@ -17,7 +17,7 @@ impl Frontend for CobolParser {
     }
 
     fn parse(&self, _source: &SourceFile) -> std::result::Result<RosettaIr, ParseError> {
-        // TODO: Implement COBOL parser
-        Ok(RosettaIr::default())
+        // Not implemented: fail loudly instead of returning an empty IR.
+        Err(ParseError::Unsupported("COBOL frontend is not implemented yet".to_string()))
     }
 }

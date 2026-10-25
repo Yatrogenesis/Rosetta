@@ -40,7 +40,7 @@ impl Frontend for MLParser {
     }
 
     fn parse(&self, _source: &SourceFile) -> std::result::Result<RosettaIr, ParseError> {
-        // TODO: Implement ML parser
-        Ok(RosettaIr::default())
+        // Not implemented: fail loudly instead of returning an empty IR.
+        Err(ParseError::Unsupported("ML/OCaml frontend is not implemented yet".to_string()))
     }
 }

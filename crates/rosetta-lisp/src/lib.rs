@@ -40,7 +40,7 @@ impl Frontend for LispParser {
     }
 
     fn parse(&self, _source: &SourceFile) -> std::result::Result<RosettaIr, ParseError> {
-        // TODO: Implement Lisp parser
-        Ok(RosettaIr::default())
+        // Not implemented: fail loudly instead of returning an empty IR.
+        Err(ParseError::Unsupported("Lisp/Scheme frontend is not implemented yet".to_string()))
     }
 }
